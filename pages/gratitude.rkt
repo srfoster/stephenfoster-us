@@ -169,6 +169,52 @@
 					   It's been running since 2013!
 					   }) 
 			       })
+
+	       (gratitude-card "Sarah Guthals"
+			       @md{
+			       Sarah, I know we had our differences, but I've
+			       always deeply respected you...
+
+			       @(show-hide @md{
+					   You're a great researcher, a skilled writer, and an awesome person.
+
+					   I count myself lucky that I met you in graduate school.  CodeSpells and ThoughtSTEM wouldn't be what they are today without your help.
+					   }) 
+			       })
+
+
+	       (gratitude-card "Sorin Lerner"
+			       @md{Sorin, having you and Bill as my Ph.D. advisors 
+			       was one of the luckiest things that has happened to me...
+			       
+			       @(show-hide @md{
+					   I'm proud to say that I'm still writing compilers 
+					   and still working on creating new programming languages.  
+
+					   Our work on visual languages, crowdsourcing,
+					   and novel runtime systems has influenced every
+					   software project I've done in the last 10 years.
+					   }) 
+			       })
+
+	       (gratitude-card "McKenzie Eakin"
+			       @md{
+			       McKenzie, in high school, I counted you one of the smartest
+			       people I knew...
+			       
+			       @(show-hide @md{
+					   It was humbling to be friends with someone
+					   who was better than me at everything from
+					   math to writing to music.  
+
+					   Even as a teenager, you were wise beyond
+					   your years.  You helped me out of a 
+					   couple of bad relationships I had gotten
+					   myself into.
+					   }) 
+			       }
+			       )
+
 	       )
 	       
 	    ---
@@ -202,18 +248,11 @@
 
 
 
-	       (gratitude-card "Sarah Guthals"
-			       @md{Coming soon})
-
-
-	       (gratitude-card "Sorin Lerner"
-			       @md{Coming soon})
 
 
 
 	       (gratitude-card "Whitney Johnson"
-			       @md{Coming soon}
-			       )
+			       @md{Coming soon})
 
 	       (gratitude-card "Bobby Potter"
 			       @md{Coming soon}
@@ -240,9 +279,6 @@
 			       @md{Coming soon}
 			       )
 
-	       (gratitude-card "McKenzie Eakin"
-			       @md{Coming soon}
-			       )
 
 	       (gratitude-card "Rider Barnum"
 			       @md{Coming soon}
