@@ -6,3 +6,5 @@
 (define pkg-desc "Description Here")
 (define version "0.0")
 (define pkg-authors '(stephen))
+(define bucket-name "stephenfoster-us")
+(define bucket-region "us-west-1")
