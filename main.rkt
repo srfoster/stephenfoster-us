@@ -10,22 +10,33 @@
     (page index.html
 	  (content
 	    (container class: "p-5"
-		       @md{
-		       # Stephen R. Foster, Ph.D.
+		       (link 'rel: "stylesheet" href: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" )
+		       (link 'rel: "stylesheet" href: "https://fonts.googleapis.com/icon?family=Material+Icons" )
 
-		       This site is under construction.
+		       @md{
+		       # Stephen R. Foster
+
+		       This site is under construction...
 
 		       ----
 		       }
 
-		       #;
 		       (div id: "root")
-		       (html:script src: "site/build/static/js/2.32d918a9.chunk.js")
-		       (html:script src: "site/build/static/js/3.82612518.chunk.js")
-		       (html:script src: "site/build/static/js/main.3b39745a.chunk.js")
-		       (html:script src: "site/build/static/js/runtime-main.13cad36d.js")
+		       (thunk*
+			 (define files
+			   (directory-list "./site/build/static/js")) 
 
-	    )))))
+			 (define (ends-with? f s)
+			   (string-suffix? (~a f) s))
+			 (define (is-js? f)
+			   (ends-with? f ".js"))
+			 (define js-files
+			   (filter is-js? files)) 
+			 (map
+			   (lambda (f)
+			     (html:script src:
+					  (~a "/static/js/" f))) 
+			   js-files)) )))))
 
 
 (define (site)
@@ -34,8 +45,10 @@
     (home-page)))
 
 (module+ main
-	 (copy-directory/files "./site/build/static"
-			       "./out/static")
+	 (system "cd site && npm run build")
+	 (delete-directory/files "./out/static"
+				 #:must-exist? #f)
+	 (system "cp -r site/build/* out/")
 	 (render #:to "out"
 		 (site)))
 
