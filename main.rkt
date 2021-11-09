@@ -12,14 +12,20 @@
 	    (container class: "p-5"
 		       (link 'rel: "stylesheet" href: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" )
 		       (link 'rel: "stylesheet" href: "https://fonts.googleapis.com/icon?family=Material+Icons" )
+		       (thunk*
+			 (define files
+			   (directory-list "./site/build/static/css")) 
 
-		       @md{
-		       # Stephen R. Foster
-
-		       This site is under construction...
-
-		       ----
-		       }
+			 (define (ends-with? f s)
+			   (string-suffix? (~a f) s))
+			 (define (is-css? f)
+			   (ends-with? f ".css"))
+			 (define css-files
+			   (filter is-css? files)) 
+			 (map
+			   (lambda (f)
+			     (link 'rel: "stylesheet" href: (~a "/static/css/" f))) 
+			   css-files))
 
 		       (div id: "root")
 		       (thunk*
@@ -41,7 +47,7 @@
 
 (define (site)
   (list
-    (bootstrap-files)
+;    (bootstrap-files)
     (home-page)))
 
 (module+ main

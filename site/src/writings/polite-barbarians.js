@@ -11,11 +11,10 @@ The next day, the sun rose to find a stack of envelopes resting on the scorched 
 >  We, the polite barbarians, apologize for the crudeness of yesterday's onslaught. Your mayor is a most clever man.
 >  — The Horde
 
----PAGE---
 
 These were brought directly to the mayor who discovered, upon close examination, that the backs of the letters were filled top to bottom with invisible ink. It was pro-barbarian propaganda that spoke of the barbarian king's love of Latin and Greek literature, and of the barbarian horde's comfortable lifestyle. Needless to say, the mayor had the letters burned.
 
-The next day, the sun rose to find the mayor himself standing immobile outside his own gates! But when the knights investigated, they found it was not the mayor — but rather a wax statue, accurate down to the last detail of his expensive clothing, even his monocle and mustache. A plaque at the bottom read: A most clever man.
+The next day... ---PAGE--- ...the sun rose to find the mayor himself standing immobile outside his own gates! But when the knights investigated, they found it was not the mayor — but rather a wax statue, accurate down to the last detail of his expensive clothing, even his monocle and mustache. A plaque at the bottom read: A most clever man.
 
 The archers were ready to torch it, but the mayor said the optics would be bad: the mayor melting in flames. Instead, after thorough inspection, he had it installed in the courtyard — a better message to the populace.
 
