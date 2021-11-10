@@ -9,9 +9,9 @@ education out of college lecture halls and into the cradle.
 
 ### 1. BASIC programming language
 
-With what we're calling Baby All-purpose Symbolic Instructional Code (aka "BASIC"), let's just say 
-that we've created a programming language whose syntax is so easy that, well, even a baby can use it! 
-Here's the 3-step process to getting your baby using our COPA-compliant, at-home BASIC interpreter as 
+With Baby All-purpose Symbolic Instructional Code (aka "BASIC"), 
+we've created a programming language whose syntax is so easy that even a baby can use it! 
+Here's how to get our COPA-compliant, at-home BASIC interpreter as 
 soon as possible:
 
 1. Purchase our patented BASIC BabyCam, connect it to your WIFI, download our BASIC BabyCam Mobile App, and sign in with your Facebook, Google, Instagram, or TikTok account(s).
@@ -25,14 +25,14 @@ facial expressions, and gestures that can be used to write programs! What you se
 "your baby being a baby," but what the BASIC BabyCam sees is BabyLanguageᵀᴹ like this:
 
 \`\`\`
-	[Burble] 
-	[Cry]
-	[Babble]
-	[Grimace]
-	[Burble again]
-	[Squirm]
-	[Fart]
-	[Smile]
+  [Burble] 
+  [Cry]
+  [Babble]
+  [Grimace]
+  [Burble again]
+  [Squirm]
+  [Fart]
+  [Smile]
 \`\`\`
 
 What now, you ask? When the LED beneath the BASIC BabyCam's watchful eye turns from red to yellow, you can use your BASIC BabyCam Mobile App to:

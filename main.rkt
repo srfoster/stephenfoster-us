@@ -8,7 +8,12 @@
 (define (home-page)
   (list
     (page index.html
-	  (content
+	  (html
+	   (head
+	    (meta 'charset: "utf-8")
+	    (meta name: "viewport"
+	     content: "width=device-width, initial-scale=1, shrink-to-fit=no"))
+           (body
 	    (container class: "p-5"
 		       (link 'rel: "stylesheet" href: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" )
 		       (link 'rel: "stylesheet" href: "https://fonts.googleapis.com/icon?family=Material+Icons" )
@@ -42,7 +47,7 @@
 			   (lambda (f)
 			     (html:script src:
 					  (~a "/static/js/" f))) 
-			   js-files)) )))))
+			   js-files)) ))))))
 
 
 (define (site)
