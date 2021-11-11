@@ -2,7 +2,7 @@
 
 export const text = 
     `Now that we've all done an Hour of Code or two,
-we can all collectively agree on two things: 1) coding is the new hip way to use the computer, and
+we can all collectively agree on two things: 1) coding is the hip new way to use the computer, and
 2) you're never too young to start doing it. That's why I'm announcing my EdTech company's
 new initiative: "Coding for Babies." Read on to hear about 5 HOT NEW PRODUCTS that bring coding
 education out of college lecture halls and into the cradle.
@@ -16,7 +16,7 @@ soon as possible:
 
 1. Purchase our patented BASIC BabyCam, connect it to your WIFI, download our BASIC BabyCam Mobile App, and sign in with your Facebook, Google, Instagram, or TikTok account(s).
 
-2. Point the BASIC BabyCam  at your baby.
+2. Point the BASIC BabyCam directly at your baby.
 
 3. Sit back and let our machine learning algorithms begin building your baby's unique BabyLanguageᵀᴹ Model.	
 

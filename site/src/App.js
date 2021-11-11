@@ -7,6 +7,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 import {text as codingForBabiesText} from './writings/coding-for-babies';
 import {text as politeBarbariansText} from './writings/polite-barbarians';
+import {text as aboutMeText} from './writings/about-me';
 import ReactMarkdown from 'react-markdown';
 
 function App() {
@@ -30,7 +31,9 @@ function App() {
 						<Route path="/coding-for-babies" exact component={
 							() => <FullDocument title="Coding for Babies" text={codingForBabiesText} />} />
 						<Route path="/dont-teach-coding" exact component={
-							() => <FullDocument title="" text={[`A book I wrote about how to teach and learn coding in the upcoming century. You can get it on Amazon [here](https://www.amazon.com/gp/product/1119602629)!`, <img style={{border: "1px solid black"}} width={300} src="https://www.dont-teach.com/book-cover.png"/>]} />} />
+							() => <FullDocument title="" text={[`A book I wrote (with the brilliant Dr. Lindsey Handley) about how to teach and learn coding in the upcoming century. You can get it on Amazon [here](https://www.amazon.com/gp/product/1119602629)!`, <img style={{border: "1px solid black"}} width={300} src="https://www.dont-teach.com/book-cover.png"/>]} />} />
+						<Route path="/about-me" exact component={
+							() => <FullDocument title="" text={aboutMeText} />} />
 					</Switch>
 				</Router>
 			</Container>
@@ -65,7 +68,7 @@ function Root() {
 const Writings = () => {
 	const [showing, setShowing] = useState()
 	return showing ? showing : <>
-		<Grid container spacing={12}>
+		<Grid container spacing={1}>
 			<Grid item md={6}>
 				<WritingLink
 					title="Don't Teach Coding"
@@ -88,6 +91,13 @@ const Writings = () => {
 					img="conan.jpg"
 					slug="the-polite-barbarians"
 					summary="A charming short story about Trojan horses."
+					/>
+			</Grid>
+			<Grid item md={6}>
+				<WritingLink
+					title="About Me"
+					slug="about-me"
+					summary="Who is the mysterious Stephen R. Foster?"
 					/>
 			</Grid>
 		</Grid>
