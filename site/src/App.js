@@ -7,14 +7,18 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 import {text as codingForBabiesText} from './writings/coding-for-babies';
 import {text as politeBarbariansText} from './writings/polite-barbarians';
+import {text as randomText} from './writings/random';
 import {text as aboutMeText} from './writings/about-me';
+import {text as dollysDragonText} from './writings/dollys-dragon';
 import ReactMarkdown from 'react-markdown';
+
+
 
 function App() {
 
 	const theme = createTheme({
 		palette: {
-		  mode: 'light',
+		  mode: 'dark',
 		},
 	  });
 
@@ -26,6 +30,15 @@ function App() {
 					<SiteHeader />
 					<Switch>
 						<Route path="/" exact component={Root} />
+						<Route path="/starcraft-ii" exact component={
+							() => <FullDocument title="StarCraft II" text={`![sc2](/sc2.png)
+							
+      I am not good at this game.  But I love it. ~Stephen
+							`} />} />
+						<Route path="/dollys-dragon" exact component={
+							() => <FullDocument title="Dolly's Dragon" text={dollysDragonText} />} />
+						<Route path="/random" exact component={
+							() => <FullDocument title="Random" text={randomText} />} />
 						<Route path="/the-polite-barbarians" exact component={
 							() => <FullDocument title="The Polite Barbarians" text={politeBarbariansText} />} />
 						<Route path="/coding-for-babies" exact component={
@@ -56,6 +69,8 @@ function SiteHeader(props) {
 
 function Root() {
 	return <>
+	    <p>Welcome to my site,</p>
+		<p style={{ width: "50%" }}>It's under construction, and very disorganized.</p>
 		<Writings />
 		<br />
 		<br />
@@ -68,36 +83,44 @@ function Root() {
 const Writings = () => {
 	const [showing, setShowing] = useState()
 	return showing ? showing : <>
-		<Grid container spacing={1}>
-			<Grid item md={6}>
+		<Grid container spacing={1} alignItems="bottom">
+			<Grid item xl={6} lg={6} md={6} xs={12}>
+				<WritingLink
+					title="Random"
+					img="blackhole.png"
+					slug="random"
+					summary="Stuff I haven't categorized yet.  Click here if you want to be pulled into the depths of the website construction process, a minefield of dead links and unfinished thoughts."
+					/>
+			</Grid>
+			<Grid item xl={6} lg={6} md={6} xs={12}>
 				<WritingLink
 					title="Don't Teach Coding"
-					img="dont-teach-coding.png"
+					img="hacker.png"
 					slug="dont-teach-coding"
-					summary="My book about teaching and learning coding."
+					summary="I wrote a book about teaching and learning coding.  Click here to learn more (and/or to buy it)."
 					/>
 			</Grid>
-			<Grid item md={6}>
+			<Grid item xl={6} lg={6} md={6} xs={12}>
 				<WritingLink
 					title="Coding for Babies"
-					img="baby-coding.jpeg"
+					img="baby.png"
 					slug="coding-for-babies"
-					summary="A satire on coding education."
+					summary="A satire on coding education.  You might like it if you're a programming language nerd, and/or if you're interested in computer science education."
 					/>
 			</Grid>
-			<Grid item md={6}>
+			<Grid item xl={6} lg={6} md={6} xs={12}>
 				<WritingLink
 					title="The Polite Barbarians"
-					img="conan.jpg"
+					img="troy.png"
 					slug="the-polite-barbarians"
-					summary="A charming short story about Trojan horses."
+					summary="A silly short story about Trojan horses that I wrote for no particular reason.  Click here to read the English translation.  You might like it if you like silly fiction that isn't too long (about a 5 minute read)."
 					/>
 			</Grid>
-			<Grid item md={6}>
+			<Grid item xl={6} lg={6} md={6} xs={12}>
 				<WritingLink
 					title="About Me"
 					slug="about-me"
-					summary="Who is the mysterious Stephen R. Foster?"
+					summary="Click here to read my short bio."
 					/>
 			</Grid>
 		</Grid>
@@ -107,6 +130,7 @@ const Writings = () => {
 const WritingLink = (props) => {
 	const history = useHistory()
 	const [elevation, setElevation] = useState(1)
+	const [showContent, setShowContent] = useState(false)
 
 	return <>
 		<a style={{ cursor: "pointer" }} onClick={() => {
@@ -114,19 +138,22 @@ const WritingLink = (props) => {
 			window.scrollTo(0, 0)
 		}}>
 			<Card 
-			  onMouseOver={()=>setElevation(6)}
-			  onMouseLeave={()=>setElevation(1)}
+				onMouseOver={() => { setElevation(2); setShowContent(true) }}
+				onMouseLeave={() => { setElevation(1); setShowContent(false) }}
 			  elevation={elevation}>
 				{!props.img ? "" :
 					<CardMedia
 						component="img"
-						height="150"
+						height="300"
 						image={props.img}
+						style={{opacity: elevation == 1 ? 0.80 : 1}}
 					/>}
-				<CardContent>
-					<h3>{props.title}</h3>
-					<p>{props.summary}</p>
-				</CardContent>
+				{showContent && <>
+					<CardContent>
+						<h3>{props.title}</h3>
+						<p>{props.summary}</p>
+					</CardContent>
+				</>}
 			</Card>
 		</a>
 	</>
