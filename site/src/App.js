@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo} from "react";
 import { HashRouter as Router, Route, Link, Switch, useHistory } from "react-router-dom";
 
-import { Card, CardContent, CardMedia, Container, Grid, Fade} from '@mui/material';
+import { Card, CardContent, CardMedia, Container, Grid, Fade, Zoom} from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
@@ -11,6 +11,7 @@ import {text as randomText} from './writings/random';
 import {text as aboutMeText} from './writings/about-me';
 import {text as dollysDragonText} from './writings/dollys-dragon';
 import ReactMarkdown from 'react-markdown';
+
 
 
 
@@ -44,7 +45,8 @@ function App() {
 						<Route path="/coding-for-babies" exact component={
 							() => <FullDocument title="Coding for Babies" text={codingForBabiesText} />} />
 						<Route path="/dont-teach-coding" exact component={
-							() => <FullDocument title="" text={[`A book I wrote (with the brilliant Dr. Lindsey Handley) about how to teach and learn coding in the upcoming century. You can get it on Amazon [here](https://www.amazon.com/gp/product/1119602629)!`, <img style={{border: "1px solid black"}} width={300} src="https://www.dont-teach.com/book-cover.png"/>]} />} />
+							() => <FullDocument title="" text={[ <img style={{ border: "1px solid black", float: "left", marginRight: 10 }} width={300} src="/blackhole.png" />,
+`A book I wrote (with the brilliant Dr. Lindsey Handley) about how to teach and learn coding in the upcoming century. You can get it on Amazon [here](https://www.amazon.com/gp/product/1119602629)!`, /*<img style={{ border: "1px solid black"}} width={300} src="https://www.dont-teach.com/book-cover.png" /> */]} />} />
 						<Route path="/about-me" exact component={
 							() => <FullDocument title="" text={aboutMeText} />} />
 					</Switch>
@@ -80,6 +82,10 @@ function Root() {
 }
 
 
+const ClickHere = (props) => {
+	return <Fade in={true} timeout={1000}><span style={{textDecoration: "underline"}}>Click</span></Fade> 
+}
+
 const Writings = () => {
 	const [showing, setShowing] = useState()
 	return showing ? showing : <>
@@ -87,25 +93,26 @@ const Writings = () => {
 			<Grid item xl={6} lg={6} md={6} xs={12}>
 				<WritingLink
 					title="Random"
-					img="blackhole.png"
+					img="hacker.png"
 					slug="random"
-					summary="Stuff I haven't categorized yet.  Click here if you want to be pulled into the depths of the website construction process, a minefield of dead links and unfinished thoughts."
+					summary={["Stuff I haven't categorized yet. ", <ClickHere/>, " if you want to be pulled into the depths of the website construction process, a minefield of dead links and unfinished thoughts."]}
 					/>
 			</Grid>
 			<Grid item xl={6} lg={6} md={6} xs={12}>
 				<WritingLink
 					title="Don't Teach Coding"
-					img="hacker.png"
+					img="blackhole.png"
 					slug="dont-teach-coding"
-					summary="I wrote a book about teaching and learning coding.  Click here to learn more (and/or to buy it)."
+					summary={["I wrote a book about teaching and learning coding. ", <ClickHere />, " to learn more, or to buy it."]}
 					/>
 			</Grid>
 			<Grid item xl={6} lg={6} md={6} xs={12}>
 				<WritingLink
 					title="Coding for Babies"
 					img="baby.png"
+					backgroundPosition="center center"
 					slug="coding-for-babies"
-					summary="A satire on coding education.  You might like it if you're a programming language nerd, and/or if you're interested in computer science education."
+					summary={["A satire on coding education. " , <ClickHere/>, " if you're a programming language nerd, and/or if you're interested in computer science education."]}
 					/>
 			</Grid>
 			<Grid item xl={6} lg={6} md={6} xs={12}>
@@ -113,14 +120,31 @@ const Writings = () => {
 					title="The Polite Barbarians"
 					img="troy.png"
 					slug="the-polite-barbarians"
-					summary="A silly short story about Trojan horses that I wrote for no particular reason.  Click here to read the English translation.  You might like it if you like silly fiction that isn't too long (about a 5 minute read)."
+					summary={["A silly short story about Trojan horses that I wrote for no particular reason. ", <ClickHere />, " if you like silly fiction that isn't too long (about a 5 minute read)."]}
+					/>
+			</Grid>
+			<Grid item xl={6} lg={6} md={6} xs={12}>
+				<WritingLink
+					title="StarCraft II"
+					img="sc2.png"
+					slug="starcraft-ii"
+					summary={["I play and am not very good.  ", <ClickHere />, " to learn more about my quest to master this very difficult game."]}
+					/>
+			</Grid>
+			<Grid item xl={6} lg={6} md={6} xs={12}>
+				<WritingLink
+					title="Dolly's Dragon"
+					img="egg.png"
+					slug="dollys-dragon"
+					backgroundPosition="center bottom"
+					summary={["Dolly's Dragon"]}
 					/>
 			</Grid>
 			<Grid item xl={6} lg={6} md={6} xs={12}>
 				<WritingLink
 					title="About Me"
 					slug="about-me"
-					summary="Click here to read my short bio."
+					summary={[<ClickHere />, " to read my short bio."]}
 					/>
 			</Grid>
 		</Grid>
@@ -142,18 +166,19 @@ const WritingLink = (props) => {
 				onMouseLeave={() => { setElevation(1); setShowContent(false) }}
 			  elevation={elevation}>
 				{!props.img ? "" :
-					<CardMedia
-						component="img"
-						height="300"
-						image={props.img}
-						style={{opacity: elevation == 1 ? 0.80 : 1}}
-					/>}
-				{showContent && <>
-					<CardContent>
-						<h3>{props.title}</h3>
-						<p>{props.summary}</p>
-					</CardContent>
-				</>}
+				    <CardMedia style={{"background": "url("+props.img+")", backgroundPosition: props.backgroundPosition ? props.backgroundPosition : "0% 0%", height: 300, opacity: elevation == 1 ? 0.80 : 1}}>
+						{}
+						<Fade in={true} timeout={ 5000 }>
+							<div>
+								{showContent ? "" :
+									<CardContent style={{ color: "white", backgroundColor: "rgba(0,0,0,.75)" }}>
+										<h3>{props.title}</h3>
+										{props.summary}
+									</CardContent>}
+							</div>
+						</Fade>
+					</CardMedia>
+				}
 			</Card>
 		</a>
 	</>

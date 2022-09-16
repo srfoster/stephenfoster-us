@@ -2,6 +2,8 @@
 
 export const text =
 `
+![/troy.png](/troy.png)
+
 There once was a horde of polite barbarians known for their cunning use of Trojan horses to conquer cities while keeping bloodshed to a minimum. The mayor of one civilized city, hearing the polite horde was en route, ordered his knights: look out for suspicious packages.
 
 The next morning, a giant wooden horse stood at the city gates, with a bow on top, ribbons gleaming in the first rays of light. The mayor ordered his archers to set it aflame. A few dozen barbarians scurried out of the burning wooden carcass, running for the woods.
