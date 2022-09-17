@@ -26,7 +26,7 @@ function App() {
 	return (
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
-			<Container maxWidth="md">
+			<Container maxWidth="xl">
 				<Router>
 					<SiteHeader />
 					<Switch>
@@ -36,6 +36,12 @@ function App() {
 							
       I am not good at this game.  But I love it. ~Stephen
 							`} />} />
+
+						<Route path="/minecraft" exact component={
+							() => <FullDocument title="Minecraft Modding" text={
+							  ["Check out my software (LearnToMod) or read my book (Minecraft Modding for Kids for Dummies)"]	
+							} />} />
+
 						<Route path="/dollys-dragon" exact component={
 							() => <FullDocument title="Dolly's Dragon" text={dollysDragonText} />} />
 						<Route path="/random" exact component={
@@ -86,52 +92,51 @@ const ClickHere = (props) => {
 	return <Fade in={true} timeout={1000}><span style={{textDecoration: "underline"}}>Click</span></Fade> 
 }
 
+const GridItem = (props) => {
+	return <Grid item xl={3} lg={4} md={6} xs={12}>
+	  { props.children }
+	</Grid>
+}
+
 const Writings = () => {
 	const [showing, setShowing] = useState()
 	return showing ? showing : <>
 		<Grid container spacing={1} alignItems="bottom">
-			<Grid item xl={6} lg={6} md={6} xs={12}>
+			<GridItem>
 				<WritingLink
 					title="Random"
 					img="hacker.png"
 					slug="random"
 					summary={["Stuff I haven't categorized yet. ", <ClickHere/>, " if you want to be pulled into the depths of the website construction process, a minefield of dead links, misspellings, and unfinished thoughts."]}
 					/>
-			</Grid>
-			<Grid item xl={6} lg={6} md={6} xs={12}>
+			</GridItem>
+			<GridItem>
 				<WritingLink
 					title="Don't Teach Coding"
 					img="blackhole.png"
 					slug="dont-teach-coding"
 					summary={["I wrote a book about teaching and learning coding. ", <ClickHere />, " to learn more, or to buy it."]}
 					/>
-			</Grid>
-			<Grid item xl={6} lg={6} md={6} xs={12}>
+			</GridItem>
+			<GridItem>
 				<WritingLink
-					title="Coding for Babies"
-					img="baby.png"
-					backgroundPosition="center center"
-					slug="coding-for-babies"
-					summary={["A satire on coding education. " , <ClickHere/>, " if you're a programming language nerd, and/or if you're interested in computer science education."]}
+					title="Minecraft"
+					img="minecraft.jpg"
+					slug="minecraft"
+					backgroundPosition="center top"
+					summary={["I've worked professionally with Minecraft for many years.  ", <ClickHere/>, " if you like Minecraft, coding, and games in education."]}
 					/>
-			</Grid>
-			<Grid item xl={6} lg={6} md={6} xs={12}>
+			</GridItem>
+			<GridItem>
 				<WritingLink
-					title="The Polite Barbarians"
-					img="troy.png"
-					slug="the-polite-barbarians"
-					summary={["A silly short story about Trojan horses that I wrote for no particular reason. ", <ClickHere />, " if you like silly fiction that isn't too long (about a 5 minute read)."]}
+					title="Dear Human"
+					img="volcano.jpg"
+					slug="dear human"
+					//backgroundPosition="top right"
+					summary={["Dear Human"]}
 					/>
-			</Grid>
-			<Grid item xl={6} lg={6} md={6} xs={12}>
-				<WritingLink
-					title="StarCraft II"
-					img="sc2.png"
-					slug="starcraft-ii"
-					summary={["I play and am not very good.  ", <ClickHere />, " to learn more about my quest to master this very difficult game."]}
-					/>
-			</Grid>
-			<Grid item xl={6} lg={6} md={6} xs={12}>
+			</GridItem>
+			<GridItem>
 				<WritingLink
 					title="Dolly's Dragon"
 					img="egg.png"
@@ -139,7 +144,41 @@ const Writings = () => {
 					backgroundPosition="center bottom"
 					summary={["Dolly's Dragon"]}
 					/>
-			</Grid>
+			</GridItem>
+			<GridItem>
+				<WritingLink
+					title="Storytree"
+					img="tree-with-eyes2.jpg"
+					slug="storytree"
+					//backgroundPosition="center bottom"
+					summary={["Storytree"]}
+					/>
+			</GridItem>
+			<GridItem>
+				<WritingLink
+					title="Coding for Babies"
+					img="baby.png"
+					backgroundPosition="center center"
+					slug="coding-for-babies"
+					summary={["A satire on coding education. " , <ClickHere/>, " if you're a programming language nerd, and/or if you're interested in computer science education."]}
+					/>
+			</GridItem>
+			<GridItem>
+				<WritingLink
+					title="The Polite Barbarians"
+					img="troy.png"
+					slug="the-polite-barbarians"
+					summary={["A silly short story about Trojan horses that I wrote for no particular reason. ", <ClickHere />, " if you like silly fiction that isn't too long (about a 5 minute read)."]}
+					/>
+			</GridItem>
+			<GridItem>
+				<WritingLink
+					title="StarCraft II"
+					img="sc2.png"
+					slug="starcraft-ii"
+					summary={["I play and am not very good.  ", <ClickHere />, " to learn more about my quest to master this very difficult game."]}
+					/>
+			</GridItem>
 		</Grid>
 	</>
 }
