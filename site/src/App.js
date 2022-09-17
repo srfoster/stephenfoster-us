@@ -95,7 +95,7 @@ const Writings = () => {
 					title="Random"
 					img="hacker.png"
 					slug="random"
-					summary={["Stuff I haven't categorized yet. ", <ClickHere/>, " if you want to be pulled into the depths of the website construction process, a minefield of dead links and unfinished thoughts."]}
+					summary={["Stuff I haven't categorized yet. ", <ClickHere/>, " if you want to be pulled into the depths of the website construction process, a minefield of dead links, misspellings, and unfinished thoughts."]}
 					/>
 			</Grid>
 			<Grid item xl={6} lg={6} md={6} xs={12}>
@@ -138,13 +138,6 @@ const Writings = () => {
 					slug="dollys-dragon"
 					backgroundPosition="center bottom"
 					summary={["Dolly's Dragon"]}
-					/>
-			</Grid>
-			<Grid item xl={6} lg={6} md={6} xs={12}>
-				<WritingLink
-					title="About Me"
-					slug="about-me"
-					summary={[<ClickHere />, " to read my short bio."]}
 					/>
 			</Grid>
 		</Grid>
