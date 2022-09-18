@@ -129,9 +129,18 @@ const Writings = () => {
 			</GridItem>
 			<GridItem>
 				<WritingLink
+					title="Gambit Queen"
+					img="chess-go.jpg"
+					slug="gambit-queen"
+					//backgroundPosition="top right"
+					summary={["Gambit Queen"]}
+					/>
+			</GridItem>
+			<GridItem>
+				<WritingLink
 					title="Dear Human"
 					img="volcano.jpg"
-					slug="dear human"
+					slug="dear-human"
 					//backgroundPosition="top right"
 					summary={["Dear Human"]}
 					/>
