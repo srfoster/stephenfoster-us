@@ -16,8 +16,8 @@ export const text =
   - DONE: [Don't Teach Coding](/#/dont-teach-coding)
   - DONE(ish): [Minecraft Modding for Dummies](/#/out-of-print)
      * Make a link to it on the minecraft page (possibly use for-dummies.jpg for the tile link)
-* [About Me](/#/about-me)
-* [For My Students](/#/for-my-students)
+* DONE (Removed tile but still have the page if we need it later) [About Me](/#/about-me)
+* DONE (Will put under OC tile) [For My Students](/#/for-my-students)
 * Ongoing Blogs (which may each get their own homepage tile?):
   * Coding (past projects, github stuff?) 
   * (Don't do?  Crosscutting?) [Videos](/#/videos)
@@ -25,20 +25,21 @@ export const text =
   * DONE [Art](/#/art)
   * DONE [Music](/#/music)
 * [Past Projects](/#/past-projects)
-  - CodeSpells 
-  - Ph.D. Work / Scientific Research / Grants etc
+  - [DONE] CodeSpells 
+  - [DONE] Ph.D. Work / Scientific Research / Grants etc
 * Current Projects:
   - [DONE] ThoughtSTEM
-  - Olympic College
+  - [DONE] Olympic College
 
 #### TODOs
 
 * Finish basic structure:
-  - Make complete (draft) set of homepage tiles
+  - [DONE, I think...] Make complete (draft) set of homepage tiles
   - Polish up homepage tiles: 
     * Standardize language: Start tile descriptions with "I..."
     * Finalize images
   - Make landing pages for all homepage tiles (add coming soon or placeholder text, release dates, etc)
+
 * [0.0.1 or 0.0.2?] Design good online reading experience:
   - Pick some piece of text and decide how best to typeset / animate / audio / video?
   - Allow website users to subscribe to be notified of fresh content (ask a few people to help me beta test this)

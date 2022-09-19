@@ -19,7 +19,7 @@ function App() {
 
 	const theme = createTheme({
 		palette: {
-		  mode: 'dark',
+		  mode: 'light',
 		},
 	  });
 
@@ -93,7 +93,7 @@ const ClickHere = (props) => {
 }
 
 const GridItem = (props) => {
-	return <Grid item xl={3} lg={4} md={6} xs={12}>
+	return <Grid item xl={3} lg={4} md={6} xs={6}>
 	  { props.children }
 	</Grid>
 }
@@ -101,7 +101,7 @@ const GridItem = (props) => {
 const Writings = () => {
 	const [showing, setShowing] = useState()
 	return showing ? showing : <>
-		<Grid container spacing={1} alignItems="bottom">
+		<Grid container spacing={2} alignItems="bottom">
 			<GridItem>
 				<WritingLink
 					title="Random"
@@ -150,6 +150,16 @@ const Writings = () => {
 					slug="gambit-queen"
 					//backgroundPosition="top right"
 					summary={["Gambit Queen"]}
+					/>
+			</GridItem>
+			<GridItem>
+				<WritingLink
+					title="CodeSpells"
+					img="codespells.jpg"
+					slug="codespells"
+					backgroundPosition="bottom right"
+					backgroundSize="fit"
+					summary={["CodeSpells"]}
 					/>
 			</GridItem>
 			<GridItem>
@@ -205,6 +215,14 @@ const Writings = () => {
 					slug="storytree"
 					//backgroundPosition="center bottom"
 					summary={["Storytree"]}
+					/>
+			</GridItem>
+			<GridItem>
+				<WritingLink
+					title="Scientific Research"
+					img="alchemy.jpg"
+					slug="science"
+					summary={["Once upon a time, I went to grad school and did research.  ", <ClickHere />, " if you like human-computer interaction and coding education research."]}
 					/>
 			</GridItem>
 			<GridItem>
