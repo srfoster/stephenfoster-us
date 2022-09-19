@@ -5,10 +5,10 @@ export const text =
 #### Links
 
 * Books (TODO: Make tiles)
-  - [Nightmare](/#/nightmare) / Nightrift?
-  - [Over the Hills](/#/over-the-hills)
-  - [Spiritstone Chronicles](/#/spiritstone-chronicles)
-  - [Short Story Collection](/#/short-stories)
+  - DONE: [Short Story Collection](/#/short-stories)
+  - DONE: [Spiritstone Chronicles](/#/spiritstone-chronicles)
+  - DONE: [Over the Hills](/#/over-the-hills)
+  - DONE: [Nightmare](/#/nightmare) / Nightrift?
   - DONE: [Gambit Queen](/#/gambit-queen)
   - DONE: [Storytree](/#/storytree)
   - DONE: [Dear Human](/#/dear-human)
@@ -19,6 +19,7 @@ export const text =
 * [About Me](/#/about-me)
 * [For My Students](/#/for-my-students)
 * Ongoing Blogs (which may each get their own homepage tile?):
+  * Coding (past projects, github stuff?) 
   * (Don't do?  Crosscutting?) [Videos](/#/videos)
   * DONE [Philosophy](/#/philosophy)
   * DONE [Art](/#/art)

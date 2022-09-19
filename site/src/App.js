@@ -120,6 +120,14 @@ const Writings = () => {
 			</GridItem>
 			<GridItem>
 				<WritingLink
+					title="Teaching"
+					img="socrates-kinkade.jpg"
+					slug="teaching"
+					summary={["I teach at Olympic College.  ", <ClickHere />, " if you're looking for stuff related to computer information systems and education."]}
+					/>
+			</GridItem>
+			<GridItem>
+				<WritingLink
 					title="Software Consulting"
 					img="dark-circuit-board.jpg"
 					slug="software-consulting"
@@ -164,11 +172,47 @@ const Writings = () => {
 			</GridItem>
 			<GridItem>
 				<WritingLink
+					title="Over the Hills"
+					img="demon-on-tower.jpg"
+					slug="over-the-hills"
+					//backgroundPosition="center bottom"
+					summary={["Over the Hills"]}
+					/>
+			</GridItem>
+			<GridItem>
+				<WritingLink
+					title="Nightmare"
+					img="nightmare-world.jpg"
+					slug="nightmare"
+					//backgroundPosition="center bottom"
+					summary={["Nightmare"]}
+					/>
+			</GridItem>
+			<GridItem>
+				<WritingLink
+					title="Spiritstone Chronicles"
+					img="skyship.jpg"
+					slug="spiritstone"
+					//backgroundPosition="center bottom"
+					backgroundSize="auto"
+					summary={["Spiritstone Chronicles"]}
+					/>
+			</GridItem>
+			<GridItem>
+				<WritingLink
 					title="Storytree"
 					img="tree-with-eyes2.jpg"
 					slug="storytree"
 					//backgroundPosition="center bottom"
 					summary={["Storytree"]}
+					/>
+			</GridItem>
+			<GridItem>
+				<WritingLink
+					title="Shortstories"
+					img="wizard-books.jpg"
+					slug="shortstories"
+					summary={["I've written a lot of short fiction over the years ", <ClickHere />, " if you like weird stuff that you can finish in one sitting."]}
 					/>
 			</GridItem>
 			<GridItem>
@@ -239,7 +283,14 @@ const WritingLink = (props) => {
 				onMouseLeave={() => { setElevation(1); setShowContent(false) }}
 			  elevation={elevation}>
 				{!props.img ? "" :
-				    <CardMedia style={{"background": "url("+props.img+")", backgroundSize: "cover", backgroundPosition: props.backgroundPosition ? props.backgroundPosition : "0% 0%", height: 300, opacity: elevation == 1 ? 0.80 : 1}}>
+					<CardMedia style={{
+						"background": "url(" + props.img + ")",
+						backgroundSize:
+							props.backgroundSize ? props.backgroundSize : "cover",
+						backgroundPosition:
+							props.backgroundPosition ? props.backgroundPosition : "0% 0%",
+						height: 300, opacity: elevation == 1 ? 0.80 : 1
+					}}>
 						{}
 						<Fade in={true} timeout={ 5000 }>
 							<div>
