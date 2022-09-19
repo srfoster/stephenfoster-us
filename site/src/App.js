@@ -113,9 +113,17 @@ const Writings = () => {
 			<GridItem>
 				<WritingLink
 					title="Don't Teach Coding"
-					img="blackhole.png"
+					img="sci-fi-tablet.jpg"
 					slug="dont-teach-coding"
 					summary={["I wrote a book about teaching and learning coding. ", <ClickHere />, " to learn more, or to buy it."]}
+					/>
+			</GridItem>
+			<GridItem>
+				<WritingLink
+					title="Software Consulting"
+					img="dark-circuit-board.jpg"
+					slug="software-consulting"
+					summary={["I run ThoughtSTEM, LLC.  ", <ClickHere />, " if you're curious about our past projects in the San Diego area, or if you're looking for software consulting."]}
 					/>
 			</GridItem>
 			<GridItem>
@@ -130,7 +138,7 @@ const Writings = () => {
 			<GridItem>
 				<WritingLink
 					title="Gambit Queen"
-					img="chess-go.jpg"
+					img="girl-secret-agent-chess.jpg"
 					slug="gambit-queen"
 					//backgroundPosition="top right"
 					summary={["Gambit Queen"]}
@@ -182,10 +190,34 @@ const Writings = () => {
 			</GridItem>
 			<GridItem>
 				<WritingLink
+					title="Music"
+					img="cubist-violin.jpg"
+					slug="music"
+					summary={["I'm on a quest to become a better musician.  ", <ClickHere />, " if you're interested in music and the learning thereof."]}
+					/>
+			</GridItem>
+			<GridItem>
+				<WritingLink
+					title="Visual Arts"
+					img="weird-woman.jpg"
+					slug="visual-arts"
+					summary={["I've been dabbling with digital art for a long time now -- most recently AI-generated art.  ", <ClickHere />, " if you like looking at weird stuff."]}
+					/>
+			</GridItem>
+			<GridItem>
+				<WritingLink
 					title="StarCraft II"
 					img="sc2.png"
 					slug="starcraft-ii"
 					summary={["I play and am not very good.  ", <ClickHere />, " to learn more about my quest to master this very difficult game."]}
+					/>
+			</GridItem>
+			<GridItem>
+				<WritingLink
+					title="Philosophy"
+					img="black-and-green-typewriter.jpg"
+					slug="philosophy"
+					summary={["Many years ago, I majored in philosophy.  ", <ClickHere />, " for a wild ride." ]}
 					/>
 			</GridItem>
 		</Grid>
@@ -207,7 +239,7 @@ const WritingLink = (props) => {
 				onMouseLeave={() => { setElevation(1); setShowContent(false) }}
 			  elevation={elevation}>
 				{!props.img ? "" :
-				    <CardMedia style={{"background": "url("+props.img+")", backgroundPosition: props.backgroundPosition ? props.backgroundPosition : "0% 0%", height: 300, opacity: elevation == 1 ? 0.80 : 1}}>
+				    <CardMedia style={{"background": "url("+props.img+")", backgroundSize: "cover", backgroundPosition: props.backgroundPosition ? props.backgroundPosition : "0% 0%", height: 300, opacity: elevation == 1 ? 0.80 : 1}}>
 						{}
 						<Fade in={true} timeout={ 5000 }>
 							<div>

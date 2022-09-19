@@ -5,11 +5,11 @@ export const text =
 #### Links
 
 * Books (TODO: Make tiles)
-  - [Gambit Queen](/#/gambit-queen)
   - [Nightmare](/#/nightmare) / Nightrift?
   - [Over the Hills](/#/over-the-hills)
   - [Spiritstone Chronicles](/#/spiritstone-chronicles)
   - [Short Story Collection](/#/short-stories)
+  - DONE: [Gambit Queen](/#/gambit-queen)
   - DONE: [Storytree](/#/storytree)
   - DONE: [Dear Human](/#/dear-human)
   - DONE: [Dolly's Dragon](/#/dollys-dragon)
@@ -19,15 +19,15 @@ export const text =
 * [About Me](/#/about-me)
 * [For My Students](/#/for-my-students)
 * Ongoing Blogs (which may each get their own homepage tile?):
-  * [Philosophy](/#/philosophy)
-  * [Art](/#/art)
-  * [Music](/#/music)
-  * [Videos](/#/videos)
+  * (Don't do?  Crosscutting?) [Videos](/#/videos)
+  * DONE [Philosophy](/#/philosophy)
+  * DONE [Art](/#/art)
+  * DONE [Music](/#/music)
 * [Past Projects](/#/past-projects)
   - CodeSpells 
   - Ph.D. Work / Scientific Research / Grants etc
 * Current Projects:
-  - ThoughtSTEM
+  - [DONE] ThoughtSTEM
   - Olympic College
 
 #### TODOs
@@ -45,11 +45,13 @@ export const text =
 * Add google analytics, test
 * Do 0.0.1 release.  Change email signatures, linkedin, oc bio, etc... 
 * Figure out release schedule for various stories
+* Teaser videos for various landing pages?
 
 
 #### Dev log
 
 
+* 9/18/2022 - LOTS more tiles
 * 9/17/2022 - Purchased Nightcafe -- might as well!  Added Minecraft tile to homepage.
 * 9/16/2022 - Decided to remove about me tile, making it a link instead. Added more links above -- more work for homepage tiles...
 * 9/15/2022 - Did a nice fade and mouse over effect for homepage.  Added Dolly's Dragon tile 
