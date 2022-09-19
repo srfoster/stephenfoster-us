@@ -107,7 +107,7 @@ const Writings = () => {
 					title="Random"
 					img="hacker.png"
 					slug="random"
-					summary={["Stuff I haven't categorized yet. ", <ClickHere/>, " if you want to be pulled into the depths of the website construction process, a minefield of dead links, misspellings, and unfinished thoughts."]}
+					summary={[<ClickHere/>, " if you want to be pulled into the depths of the website construction process, a minefield of dead links, misspellings, and unfinished thoughts."]}
 					/>
 			</GridItem>
 			<GridItem>
@@ -123,15 +123,15 @@ const Writings = () => {
 					title="Teaching"
 					img="socrates-kinkade.jpg"
 					slug="teaching"
-					summary={["I teach at Olympic College.  ", <ClickHere />, " if you're looking for stuff related to computer information systems and education."]}
+					summary={["I teach at Olympic College.  ", <ClickHere />, " if you're a student or educator in computing."]}
 					/>
 			</GridItem>
 			<GridItem>
 				<WritingLink
-					title="Software Consulting"
+					title="ThoughtSTEM"
 					img="dark-circuit-board.jpg"
 					slug="software-consulting"
-					summary={["I run ThoughtSTEM, LLC.  ", <ClickHere />, " if you're curious about our past projects in the San Diego area, or if you're looking for software consulting."]}
+					summary={["I run a software consulting company.  ", <ClickHere />, " if you're curious about our past projects, or if you're looking for software consulting."]}
 					/>
 			</GridItem>
 			<GridItem>
@@ -149,7 +149,7 @@ const Writings = () => {
 					img="girl-secret-agent-chess.jpg"
 					slug="gambit-queen"
 					//backgroundPosition="top right"
-					summary={["Gambit Queen"]}
+					summary={[<ClickHere/>, " if you like young adult sci-fi novels about secret schools for spies."]}
 					/>
 			</GridItem>
 			<GridItem>
@@ -159,7 +159,7 @@ const Writings = () => {
 					slug="codespells"
 					backgroundPosition="bottom right"
 					backgroundSize="fit"
-					summary={["CodeSpells"]}
+					summary={["I once released an indie game about coding your own magic spells.  ", <ClickHere />, " if you like magic and end user programming."]}
 					/>
 			</GridItem>
 			<GridItem>
@@ -168,7 +168,7 @@ const Writings = () => {
 					img="volcano.jpg"
 					slug="dear-human"
 					//backgroundPosition="top right"
-					summary={["Dear Human"]}
+					summary={[<ClickHere />, " here if you like magical murder mysteries and psychological thrillers."]}
 					/>
 			</GridItem>
 			<GridItem>
@@ -177,7 +177,7 @@ const Writings = () => {
 					img="egg.png"
 					slug="dollys-dragon"
 					backgroundPosition="center bottom"
-					summary={["Dolly's Dragon"]}
+					summary={["When I was 13, I wrote a book. ", <ClickHere />, " if you like innocent high fantasy about dragons."]}
 					/>
 			</GridItem>
 			<GridItem>
@@ -185,8 +185,7 @@ const Writings = () => {
 					title="Over the Hills"
 					img="demon-on-tower.jpg"
 					slug="over-the-hills"
-					//backgroundPosition="center bottom"
-					summary={["Over the Hills"]}
+					summary={[<ClickHere/>, " if you like dark fantasy novels about wizards breaking out of prison." ]}
 					/>
 			</GridItem>
 			<GridItem>
@@ -195,7 +194,7 @@ const Writings = () => {
 					img="nightmare-world.jpg"
 					slug="nightmare"
 					//backgroundPosition="center bottom"
-					summary={["Nightmare"]}
+					summary={[<ClickHere/>, " if you like dark fantasy about rifts between our world and the nightmares beyond."]}
 					/>
 			</GridItem>
 			<GridItem>
@@ -204,8 +203,8 @@ const Writings = () => {
 					img="skyship.jpg"
 					slug="spiritstone"
 					//backgroundPosition="center bottom"
-					backgroundSize="auto"
-					summary={["Spiritstone Chronicles"]}
+					//backgroundSize="auto"
+					summary={[<ClickHere/>, " if you like fantasy novels about flying ships."]}
 					/>
 			</GridItem>
 			<GridItem>
@@ -214,7 +213,7 @@ const Writings = () => {
 					img="tree-with-eyes2.jpg"
 					slug="storytree"
 					//backgroundPosition="center bottom"
-					summary={["Storytree"]}
+					summary={[<ClickHere/>, " if you like science fiction novels about evil trees."]}
 					/>
 			</GridItem>
 			<GridItem>

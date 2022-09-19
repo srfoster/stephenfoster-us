@@ -36,7 +36,7 @@ export const text =
 * Finish basic structure:
   - [DONE, I think...] Make complete (draft) set of homepage tiles
   - Polish up homepage tiles: 
-    * Standardize language: Start tile descriptions with "I..."
+    * [DONE maybe??] Standardize language: Start tile descriptions with "I..."
     * Finalize images
   - Make landing pages for all homepage tiles (add coming soon or placeholder text, release dates, etc)
 
