@@ -145,6 +145,16 @@ const Writings = () => {
 			</GridItem>
 			<GridItem>
 				<WritingLink
+					title="Coding"
+					img="gandalf-with-computer.jpg"
+					slug="coding"
+					backgroundPosition="center bottom"
+					backgroundSize="auto"
+					summary={["I've been coding for a long time.  ", <ClickHere/>, " if you like coding."]}
+					/>
+			</GridItem>
+			<GridItem>
+				<WritingLink
 					title="Gambit Queen"
 					img="girl-secret-agent-chess.jpg"
 					slug="gambit-queen"
@@ -294,11 +304,10 @@ const WritingLink = (props) => {
 						{}
 						<Fade in={true} timeout={ 5000 }>
 							<div>
-								{showContent ? "" :
-									<CardContent style={{ color: "white", backgroundColor: "rgba(0,0,0,.75)" }}>
-										<h3>{props.title}</h3>
-										{props.summary}
-									</CardContent>}
+								<CardContent style={{ color: "white", backgroundColor: "rgba(0,0,0,.75)" }}>
+									{props.title}
+									{!showContent ? "" : <div style={{marginTop: 15}}>{props.summary}</div>}
+								</CardContent>
 							</div>
 						</Fade>
 					</CardMedia>
