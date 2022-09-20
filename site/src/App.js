@@ -165,7 +165,7 @@ const Writings = () => {
 			<GridItem>
 				<WritingLink
 					title="Dear Human"
-					img="volcano.jpg"
+					img="desert-demon.jpg"
 					slug="dear-human"
 					//backgroundPosition="top right"
 					summary={[<ClickHere />, " here if you like magical murder mysteries and psychological thrillers."]}
@@ -209,7 +209,7 @@ const Writings = () => {
 			</GridItem>
 			<GridItem>
 				<WritingLink
-					title="Storytree"
+					title="The Storytree"
 					img="tree-with-eyes2.jpg"
 					slug="storytree"
 					//backgroundPosition="center bottom"
@@ -229,7 +229,7 @@ const Writings = () => {
 					title="Shortstories"
 					img="wizard-books.jpg"
 					slug="shortstories"
-					summary={["I've written a lot of short fiction over the years ", <ClickHere />, " if you like weird stuff that you can finish in one sitting."]}
+					summary={["I've written a lot of short fiction over the years. ", <ClickHere />, " if you like weird stuff that you can finish in one sitting."]}
 					/>
 			</GridItem>
 			<GridItem>
