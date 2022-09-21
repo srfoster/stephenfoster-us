@@ -52,7 +52,7 @@ export const text =
 
 #### Dev log
 
-
+* 9/19/2022 - RELEASED new version
 * 9/18/2022 - LOTS more tiles
 * 9/17/2022 - Purchased Nightcafe -- might as well!  Added Minecraft tile to homepage.
 * 9/16/2022 - Decided to remove about me tile, making it a link instead. Added more links above -- more work for homepage tiles...
