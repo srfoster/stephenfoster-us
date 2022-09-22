@@ -16,6 +16,15 @@ import {text as minecraftText} from './writings/minecraft';
 import {text as gambitQueenText} from './writings/gambit-queen';
 import {text as codeSpellsText} from './writings/codespells';
 import {text as dearHumanText} from './writings/dear-human';
+import {text as overTheHillsText} from './writings/over-the-hills';
+import {text as nightmareText} from './writings/nightmare';
+import {text as spiritStoneText} from './writings/spiritstone';
+import {text as storyTreeText} from './writings/storytree';
+import {text as scienceText} from './writings/science';
+import {text as musicText} from './writings/music';
+import {text as visualArtsText} from './writings/visual-arts';
+import {text as philosophyText} from './writings/philosophy';
+import {text as codingText} from './writings/coding';
 import ReactMarkdown from 'react-markdown';
 
 
@@ -87,23 +96,23 @@ function App() {
 						<Route path="/dear-human" exact component={
 							() => <FullDocument title="Dear Human" text={dearHumanText} />} /> 
 						<Route path="/over-the-hills" exact component={
-							() => <FullDocument title="Over the Hills" text={"over-the-hills"} />} /> 
+							() => <FullDocument title="Over the Hills" text={overTheHillsText} />} /> 
 						<Route path="/nightmare" exact component={
-							() => <FullDocument title="Nightmare" text={"nightmare"} />} /> 
+							() => <FullDocument title="Nightmare" text={nightmareText} />} /> 
 						<Route path="/spiritstone" exact component={
-							() => <FullDocument title="Spiritstone" text={"spiritstone"} />} /> 
+							() => <FullDocument title="Spiritstone" text={spiritStoneText} />} /> 
 						<Route path="/storytree" exact component={
-							() => <FullDocument title="Storytree" text={"storytree"} />} /> 
+							() => <FullDocument title="Storytree" text={storyTreeText} />} /> 
 						<Route path="/science" exact component={
-							() => <FullDocument title="Science" text={"Science"} />} /> 
+							() => <FullDocument title="Science" text={scienceText} />} /> 
 						<Route path="/music" exact component={
-							() => <FullDocument title="Music" text={"Music"} />} /> 
+							() => <FullDocument title="Music" text={musicText} />} /> 
 						<Route path="/visual-arts" exact component={
-							() => <FullDocument title="Visual Arts" text={"Visual Arts"} />} /> 
+							() => <FullDocument title="Visual Arts" text={visualArtsText} />} /> 
 						<Route path="/philosophy" exact component={
-							() => <FullDocument title="Philosophy" text={"Philosophy"} />} /> 
+							() => <FullDocument title="Philosophy" text={philosophyText} />} /> 
 						<Route path="/coding" exact component={
-							() => <FullDocument title="Coding" text={"Coding"} />} /> 
+							() => <FullDocument title="Coding" text={codingText} />} /> 
 
             <Route path="/random" exact component={
 							() => <FullDocument title="Random" text={randomText} />} />
