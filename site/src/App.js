@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo} from "react";
 import { HashRouter as Router, Route, Link, Switch, useHistory } from "react-router-dom";
 
-import { Card, CardContent, CardMedia, Container, Grid, Fade, Zoom} from '@mui/material';
+import { Avatar, Button, Paper, Card, CardActions, CardContent, CardMedia, Container, Grid, Fade, Typography, Zoom} from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
@@ -121,7 +121,7 @@ function App() {
 						<Route path="/coding-for-babies" exact component={
 							() => <FullDocument title="Coding for Babies" text={codingForBabiesText} />} />
 						<Route path="/dont-teach-coding" exact component={
-							() => <FullDocument title="" text={[ <img style={{ border: "1px solid black", float: "left", marginRight: 10 }} width={300} src="/blackhole.png" />,
+							() => <FullDocument title="" text={[ "# Don't Teach Coding", <img style={{ border: "1px solid black",  marginRight: 10 }} width={300} src="/dont-teach-coding-cover.jpg" />,
 `A book I wrote (with the brilliant Dr. Lindsey Handley) about how to teach and learn coding in the upcoming century. You can get it on Amazon [here](https://www.amazon.com/gp/product/1119602629)!`, /*<img style={{ border: "1px solid black"}} width={300} src="https://www.dont-teach.com/book-cover.png" /> */]} />} />
 						<Route path="/about-me" exact component={
 							() => <FullDocument title="" text={aboutMeText} />} />
@@ -402,12 +402,32 @@ const FullDocument = (props) => {
 	const history = useHistory()
 
 	return <>
-		<Fade in={true} timeout={1000}>
-			<div style={{ letterSpacing: "-.003em", lineHeight: 1.58, fontSize: 21, fontFamily: "medium-content-serif-font,Georgia,Cambria,\"Times New Roman\",Times,serif", margin: 10 }}>
-				<h2>{props.title}</h2>
-				{text}
-			</div>
-		</Fade>
+		<Grid container spacing={2} alignItems="bottom">
+	    <Grid item xl={9} lg={9} md={9} xs={9}>
+        <Paper style={{padding: 10, paddingLeft: "10%", paddingRight: "10%"}}>
+			    <Fade in={true} timeout={1000}>
+				    <div style={{ letterSpacing: "-.003em", lineHeight: 1.58, fontSize: 21, fontFamily: "medium-content-serif-font,Georgia,Cambria,\"Times New Roman\",Times,serif", margin: 10 }}>
+					    <h2>{props.title}</h2>
+					    {text}
+				    </div>
+			    </Fade>
+        </Paper>
+      </Grid>
+	    <Grid item xl={3} lg={3} md={3} xs={3}>
+        <Card>
+          <CardContent>
+					<Typography variant="paragraph" display="block">
+					  <Avatar alt="Stephen Foster" src="hacker.png" sx={{ width: 56, height: 56 }} style={{float:"left", marginRight: 10}} />
+						Thanks for checking out this subpage on my website.  Let me know if you have any questions.
+					</Typography>
+          </CardContent>
+
+          <CardActions>
+					<Button variant="outlined">Contact Me</Button>
+          </CardActions>
+        </Card>
+      </Grid>
+    </Grid>
 	</>
 }
 
