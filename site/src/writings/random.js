@@ -52,6 +52,7 @@ export const text =
 
 #### Dev log
 
+* 9/27/2022 - Began designing the FullDocument, also a contact me side card
 * 9/19/2022 - RELEASED new version
 * 9/18/2022 - LOTS more tiles
 * 9/17/2022 - Purchased Nightcafe -- might as well!  Added Minecraft tile to homepage.
