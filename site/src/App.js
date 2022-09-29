@@ -430,7 +430,7 @@ const FullDocument = (props) => {
           <CardContent>
 					<Typography variant="paragraph" display="block">
 					  <Avatar alt="Stephen Foster" src="hacker.png" sx={{ width: 56, height: 56 }} style={{float:"left", marginRight: 10}} />
-						Thanks for checking out this subpage on my website.  Let me know if you have any questions.
+						Thanks for checking out on my website.  Let me know if you have any questions.
 					</Typography>
           </CardContent>
 
