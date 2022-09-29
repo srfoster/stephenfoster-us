@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo} from "react";
 import { HashRouter as Router, Route, Link, Switch, useHistory } from "react-router-dom";
 
-import { Card, CardContent, CardMedia, Container, Grid, Fade, Zoom} from '@mui/material';
+import { Button, Card, CardContent, CardMedia, Container, Grid, Fade, Zoom} from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
@@ -26,6 +26,12 @@ import {text as visualArtsText} from './writings/visual-arts';
 import {text as philosophyText} from './writings/philosophy';
 import {text as codingText} from './writings/coding';
 import ReactMarkdown from 'react-markdown';
+
+
+import SheetMusic from "@slnsw/react-sheet-music";
+import uniqid from "uniqid";
+import * as Tone from "tone";
+
 
 
 
@@ -76,6 +82,14 @@ function App() {
 					summary={["A silly short story about Trojan horses that I wrote for no particular reason. ", <ClickHere />, " if you like silly fiction that isn't too long (about a 5 minute read)."]}
 					/>
 			</GridItem>
+			<GridItem>
+				<WritingLink
+												title="Jonny Vampire"
+												img="vampire3.jpg"
+												slug="jonny-vampire"
+												summary={["A short story I wrote when I was 18."]}
+					/>
+			</GridItem>
 
 									</Grid>
 								  
@@ -83,6 +97,8 @@ function App() {
 							  ]
 							} />} />
 
+						<Route path="/unfinished-works" exact component={
+							() => <FullDocument title="Unfinished Works" text={"The Gatherers.  Schools of Mind."} />} />
 						<Route path="/dollys-dragon" exact component={
 							() => <FullDocument title="Dolly's Dragon" text={dollysDragonText} />} />
 						<Route path="/teaching" exact component={
@@ -314,6 +330,14 @@ const Writings = () => {
 			</GridItem>
 			<GridItem>
 				<WritingLink
+					title="Unfinished Novels"
+					img="ancient-books.jpg"
+					slug="unfinished-works"
+					summary={["I don't finish all the works I start...."]}
+					/>
+			</GridItem>
+			<GridItem>
+				<WritingLink
 					title="Music"
 					img="cubist-violin.jpg"
 					slug="music"
@@ -387,17 +411,74 @@ const WritingLink = (props) => {
 	</>
 }
 
+
+//Inspired by: https://codesandbox.io/s/markdown-abcjs-forked-2dbtly?file=/src/App.js:350-412
+function Score({ notation, id }) {
+	const [isPlaying, setIsPlaying] = useState(false);
+
+	const synth = new Tone.PolySynth(Tone.Synth).toDestination();
+
+
+	function onEvent(event) {
+		if (!event) {
+		  return;
+		}
+		event.notes.forEach((n) => {
+		  synth.triggerAttackRelease(n.name, n.duration);
+		});
+	}
+
+	function play() {
+		if (isPlaying) { //Why??? SF
+			document.getElementById();
+		}
+		setIsPlaying(!isPlaying);
+    }
+
+	return (
+		<>
+			<div style={{
+				backgroundColor: "white"}}>
+				<SheetMusic
+					notation={notation}
+					id={id}
+					isPlaying={isPlaying}
+					onEvent={onEvent}
+					bpm={70}
+				/>
+			</div>
+			{<Button onClick={play}>Play</Button>}
+		</>
+	);
+}
+
+
 const FullDocument = (props) => {
 	let text;
+
+	let components = {
+		code({ node, inline, className, children, ...props }) {
+			console.log("className", className)
+			const match = /language-(\w+)/.exec(className || "");
+			return !inline && match && match[1] === "music" ? (
+				<Score
+					id={uniqid()}
+					notation={`${children}`.replace(/\n$/, "")}
+				/>
+			) : (
+				<code className={className} {...props}>{children}</code>
+			);
+		}
+	}
 
 	if (props.text.map) {
 		text = props.text.map((t) => {
 			if (typeof (t) == "string")
-				return <ReactMarkdown>{t}</ReactMarkdown>
+				return <ReactMarkdown components={components}>{t}</ReactMarkdown>
 			return t
 		})
 	} else {
-		text = <ReactMarkdown>{props.text}</ReactMarkdown>
+		text = <ReactMarkdown components={components}>{props.text}</ReactMarkdown>
 	}
 	const history = useHistory()
 

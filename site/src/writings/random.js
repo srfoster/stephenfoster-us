@@ -33,6 +33,8 @@ export const text =
 
 #### TODOs
 
+* Music side-project: Fix bugs with play button (or just leave commented out...)
+
 * Finish basic structure:
   - [DONE, I think...] Make complete (draft) set of homepage tiles
   - Polish up homepage tiles: 
@@ -52,6 +54,7 @@ export const text =
 
 #### Dev log
 
+* 9/23/2022 - Explored typesetting music.  Because I like playing violin, but I haven't been putting it on my website because this was a blocker.
 * 9/19/2022 - RELEASED new version
 * 9/18/2022 - LOTS more tiles
 * 9/17/2022 - Purchased Nightcafe -- might as well!  Added Minecraft tile to homepage.
