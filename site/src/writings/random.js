@@ -33,19 +33,23 @@ export const text =
 
 #### TODOs
 
-* Music side-project: Fix bugs with play button (or just leave commented out...)
 
 * Finish basic structure:
   - [DONE, I think...] Make complete (draft) set of homepage tiles
-  - Polish up homepage tiles: 
-    * [DONE maybe??] Standardize language: Start tile descriptions with "I..."
-    * Finalize images
+  - [DONE for now] Polish up homepage tiles: 
+    * [DONE for now] Standardize language: Start tile descriptions with "I..."
+    * [DONE for now] Finalize images
   - Make landing pages for all homepage tiles (add coming soon or placeholder text, release dates, etc)
+    - [DONE] DTC
+    - Music
+      * Music side-project: Fix bugs with play button (or just leave commented out...)
+      * ...
 
 * [0.0.1 or 0.0.2?] Design good online reading experience:
   - Pick some piece of text and decide how best to typeset / animate / audio / video?
   - Allow website users to subscribe to be notified of fresh content (ask a few people to help me beta test this)
   - Begin releasing one book (with regular schedule)
+
 * Add google analytics, test
 * Do 0.0.1 release.  Change email signatures, linkedin, oc bio, etc... 
 * Figure out release schedule for various stories
@@ -54,7 +58,9 @@ export const text =
 
 #### Dev log
 
+* 9/28/2022 - Better link colors.  Fixed image sizes in documents.  Revised Don't Teach Coding page.
 * 9/23/2022 - Explored typesetting music.  Because I like playing violin, but I haven't been putting it on my website because this was a blocker.
+* 9/27/2022 - Began designing the FullDocument, also a contact me side card
 * 9/19/2022 - RELEASED new version
 * 9/18/2022 - LOTS more tiles
 * 9/17/2022 - Purchased Nightcafe -- might as well!  Added Minecraft tile to homepage.

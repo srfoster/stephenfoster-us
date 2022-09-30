@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo} from "react";
 import { HashRouter as Router, Route, Link, Switch, useHistory } from "react-router-dom";
 
-import { Button, Card, CardContent, CardMedia, Container, Grid, Fade, Zoom} from '@mui/material';
+import { Avatar, Button, Paper, Card, CardActions, CardContent, CardMedia, Container, Grid, Fade, Typography, Zoom} from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
@@ -100,7 +100,22 @@ function App() {
 						<Route path="/unfinished-works" exact component={
 							() => <FullDocument title="Unfinished Works" text={"The Gatherers.  Schools of Mind."} />} />
 						<Route path="/dollys-dragon" exact component={
-							() => <FullDocument title="Dolly's Dragon" text={dollysDragonText} />} />
+							() => <FullDocument
+								sideThings={[
+								  <ArtInfoComment img="egg.png" text={`**Algorithm:** Stable Diffusion
+
+**Approximate Prompt:** dragon egg style of thomas kinkade`} />,
+
+									<ArtInfoComment alternate={ true } img="cosmic-girl-with-dragon.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** girl with dragon resolution holographic astral cosmic illustration mixed media by Pablo Amaringo`} />,
+
+									<ArtInfoComment alternate={ true } img="girl-with-dragon.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** girl with pet dragon detailed matte painting`} />,
+                                  
+								]}
+								title="Dolly's Dragon" text={dollysDragonText} />} />
 						<Route path="/teaching" exact component={
 							() => <FullDocument title="Teaching" text={teachingText} />} />
 						<Route path="/software-consulting" exact component={
@@ -131,14 +146,38 @@ function App() {
 							() => <FullDocument title="Coding" text={codingText} />} /> 
 
             <Route path="/random" exact component={
-							() => <FullDocument title="Random" text={randomText} />} />
+							() => <FullDocument
+								sideThings={<ArtInfoComment img="hacker.png" text={`**Algorithm:** Stable Diffusion
+
+**Approximate Prompt:** hacker in the matrix, style of thomas kinkade`} />}
+								title="Random" text={randomText} />} />
 						<Route path="/the-polite-barbarians" exact component={
 							() => <FullDocument title="The Polite Barbarians" text={politeBarbariansText} />} />
 						<Route path="/coding-for-babies" exact component={
 							() => <FullDocument title="Coding for Babies" text={codingForBabiesText} />} />
 						<Route path="/dont-teach-coding" exact component={
-							() => <FullDocument title="" text={[ <img style={{ border: "1px solid black", float: "left", marginRight: 10 }} width={300} src="/blackhole.png" />,
-`A book I wrote (with the brilliant Dr. Lindsey Handley) about how to teach and learn coding in the upcoming century. You can get it on Amazon [here](https://www.amazon.com/gp/product/1119602629)!`, /*<img style={{ border: "1px solid black"}} width={300} src="https://www.dont-teach.com/book-cover.png" /> */]} />} />
+							() => <FullDocument title=""
+								sideThings={
+									<>
+									<ArtInfoComment img="sci-fi-tablet.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** computer terminal cyberpunk 2099 blade runner 2049 neon`} />
+									</>
+								}
+								text={["# Don't Teach Coding", <img style={{ border: "1px solid black", marginRight: 10 }} width={300} src="/dont-teach-coding-cover.jpg" />,
+`A book I wrote (with the brilliant Dr. Lindsey Handley) about how to teach and learn coding in the upcoming century. You can [get it on Amazon here](https://www.amazon.com/gp/product/1119602629).
+
+Although the book is written for "coding teachers" — we take a broad view of what it means to be one:
+
+   * You're a teacher when you teach in a K-12 classroom.  
+   * You're a teacher when you teach your own children
+   * You're a teacher when you're teaching yourself
+
+So, if you're a coding teacher, we wrote this book for you.
+
+[Check it out!](https://www.amazon.com/gp/product/1119602629)
+
+`,  <div style={{ clear: "both", display: "table"}} /> ]} />} />
 						<Route path="/about-me" exact component={
 							() => <FullDocument title="" text={aboutMeText} />} />
 					</Switch>
@@ -372,6 +411,30 @@ const Writings = () => {
 	</>
 }
 
+const ArtInfoComment = (props) => {
+  return (
+	  <Card>
+		  <CardContent>
+			  <Typography variant="h6">{props.alternate ? "Runner Up" : "Winning Homepage Tile"}</Typography>
+		  </CardContent>
+		  <CardMedia style={{
+			  "background": "url(" + props.img + ")",
+			  backgroundSize:
+				  props.backgroundSize ? props.backgroundSize : "cover",
+			  backgroundPosition:
+				  props.backgroundPosition ? props.backgroundPosition : "0% 0%",
+			  height: 300
+		  }}>
+		  </CardMedia>
+		  <CardContent>
+			  <ReactMarkdown>
+				  {props.text}
+			  </ReactMarkdown>
+		  </CardContent>
+	  </Card> 
+  )
+}
+
 const WritingLink = (props) => {
 	const history = useHistory()
 	const [elevation, setElevation] = useState(1)
@@ -453,8 +516,26 @@ function Score({ notation, id }) {
 }
 
 
+function ContactMeComment(props) {
+	return(
+		<Card>
+			<CardContent>
+				<Typography variant="paragraph" display="block">
+					<Avatar alt="Stephen Foster" src="hacker.png" sx={{ width: 56, height: 56 }} style={{ float: "left", marginRight: 10 }} />
+					Thanks for checking out on my website.  Let me know if you have any questions.
+				</Typography>
+			</CardContent>
+
+			<CardActions>
+				<Button variant="outlined">Contact Me</Button>
+			</CardActions>
+		</Card>
+	)
+}
+
 const FullDocument = (props) => {
 	let text;
+	let sideThings = props.sideThings
 
 	let components = {
 		code({ node, inline, className, children, ...props }) {
@@ -483,12 +564,23 @@ const FullDocument = (props) => {
 	const history = useHistory()
 
 	return <>
-		<Fade in={true} timeout={1000}>
-			<div style={{ letterSpacing: "-.003em", lineHeight: 1.58, fontSize: 21, fontFamily: "medium-content-serif-font,Georgia,Cambria,\"Times New Roman\",Times,serif", margin: 10 }}>
-				<h2>{props.title}</h2>
-				{text}
-			</div>
-		</Fade>
+		<Grid className="document" container spacing={2} alignItems="bottom">
+	    <Grid item xl={9} lg={9} md={9} xs={9}>
+        <Paper style={{padding: 10, paddingLeft: "10%", paddingRight: "10%"}}>
+			    <Fade in={true} timeout={1000}>
+				    <div style={{ letterSpacing: "-.003em", lineHeight: 1.58, fontSize: 21, margin: 10 }}>
+					    <h2>{props.title}</h2>
+					    {text}
+				    </div>
+			    </Fade>
+        </Paper>
+      </Grid>
+	    <Grid item xl={3} lg={3} md={3} xs={3}>
+		{ sideThings.map((s)=>[s,<br/>]) }
+		<br/>
+		<ContactMeComment/>
+      </Grid>
+    </Grid>
 	</>
 }
 
