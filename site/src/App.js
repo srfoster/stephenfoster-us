@@ -25,6 +25,7 @@ import {text as musicText} from './writings/music';
 import {text as visualArtsText} from './writings/visual-arts';
 import {text as philosophyText} from './writings/philosophy';
 import {text as codingText} from './writings/coding';
+import {text as homepageTileContestText} from './writings/homepage-tile-contest';
 import ReactMarkdown from 'react-markdown';
 
 
@@ -44,6 +45,7 @@ function App() {
 		},
 	  });
 
+	  //TODO: Sort these better
 	return (
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
@@ -52,6 +54,8 @@ function App() {
 					<SiteHeader />
 					<Switch>
 						<Route path="/" exact component={Root} />
+						<Route path="/homepage-tile-contest" exact component={
+							() => <FullDocument title="Homepage Tile Contest" text={ homepageTileContestText } />} />
 						<Route path="/starcraft-ii" exact component={
 							() => <FullDocument title="StarCraft II" text={`![sc2](/sc2.png)
 							
@@ -113,6 +117,9 @@ function App() {
 									<ArtInfoComment alternate={ true } img="girl-with-dragon.jpg" text={`**Algorithm:** Stable Diffusion
 
 **Prompt:** girl with pet dragon detailed matte painting`} />,
+									<ArtInfoComment alternate={ true } img="silver-horse-dragon-cropped.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** teenage girl riding a silver dragon detailed matte painting`} />,
                                   
 								]}
 								title="Dolly's Dragon" text={dollysDragonText} />} />
@@ -137,7 +144,37 @@ function App() {
 						<Route path="/science" exact component={
 							() => <FullDocument title="Science" text={scienceText} />} /> 
 						<Route path="/music" exact component={
-							() => <FullDocument title="Music" text={musicText} />} /> 
+							() => <FullDocument
+								sideThings={[
+								  <ArtInfoComment img="cubist-violin.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** violin and piano surrealism Salvador Dali matte background melting oil on canvas`} />,
+
+									<ArtInfoComment alternate={ true } img="violin-kinkade.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** violin closeup ethereal fantasy hyperdetailed mist Thomas Kinkade`} />,
+
+									<ArtInfoComment alternate={ true } img="abstract-violin.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** violin abstract cubism Euclidean Georgy Kurasov Albert Gleizes`} />,
+									<ArtInfoComment alternate={ true } img="piano-kinkade.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** violin and piano ethereal fantasy hyperdetailed mist Thomas Kinkade`} />,
+									<ArtInfoComment alternate={true} img="piano.jpg"
+										backgroundPosition="bottom right"
+										text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** surrealism Salvador Dali matte background melting oil on canvas`} />,
+
+									<ArtInfoComment alternate={true} img="weird-piano.jpg"
+										backgroundPosition="bottom right"
+										text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** `} />,
+                                  
+								]}
+							    	
+								title="Music" text={musicText} />} /> 
 						<Route path="/visual-arts" exact component={
 							() => <FullDocument title="Visual Arts" text={visualArtsText} />} /> 
 						<Route path="/philosophy" exact component={
@@ -412,6 +449,8 @@ const Writings = () => {
 }
 
 const ArtInfoComment = (props) => {
+  const history = useHistory()
+
   return (
 	  <Card>
 		  <CardContent>
@@ -431,6 +470,11 @@ const ArtInfoComment = (props) => {
 				  {props.text}
 			  </ReactMarkdown>
 		  </CardContent>
+		  <CardActions>
+			  <Button variant="outlined" onClick={() => {  
+                 history.push("/homepage-tile-contest")
+			  }}>What's the Homepage Tile Contest?</Button>
+		  </CardActions>
 	  </Card> 
   )
 }
@@ -576,7 +620,7 @@ const FullDocument = (props) => {
         </Paper>
       </Grid>
 	    <Grid item xl={3} lg={3} md={3} xs={3}>
-		{ sideThings.map((s)=>[s,<br/>]) }
+		{ sideThings && sideThings.length ? sideThings.map((s)=>[s,<br/>]) : sideThings}
 		<br/>
 		<ContactMeComment/>
       </Grid>

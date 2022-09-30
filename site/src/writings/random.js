@@ -2,6 +2,10 @@ export const text =
 `
 ![/hacker.png](/hacker.png)
 
+Current subgoal: Finish all art info comments on landing pages.  Do page about homepage tile contest
+Main goal: Finish basic landing page for all homepage tiles
+
+
 #### Links
 
 * Books (TODO: Make tiles)
@@ -58,6 +62,8 @@ export const text =
 
 #### Dev log
 
+* 9/30/2022 - Added all Dolly's Dragon and Music homepage contest tiles
+* 9/29/2022 - Began working on landing pages: ArtInfoComments  
 * 9/28/2022 - Better link colors.  Fixed image sizes in documents.  Revised Don't Teach Coding page.
 * 9/23/2022 - Explored typesetting music.  Because I like playing violin, but I haven't been putting it on my website because this was a blocker.
 * 9/27/2022 - Began designing the FullDocument, also a contact me side card
