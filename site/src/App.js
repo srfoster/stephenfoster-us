@@ -63,7 +63,16 @@ function App() {
 							`} />} />
 
 						<Route path="/minecraft" exact component={
-							() => <FullDocument title="Minecraft Modding" text={ minecraftText } />} />
+							() => <FullDocument title="Minecraft Modding"
+								sideThings={
+									[
+									 <ArtInfoComment img="minecraft.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** minecraft ethereal fantasy hyperdetailed mist Thomas Kinkade`} />,
+
+									]
+								}
+								text={minecraftText} />} />
 
 						<Route path="/shortstories" exact component={
 							() => <FullDocument title="Short Fiction" text={
@@ -153,7 +162,48 @@ function App() {
 									]}
 									title="Software Consulting" text={softwareConsultingText} />} />
 						<Route path="/gambit-queen" exact component={
-							() => <FullDocument title="Gambit Queen" text={ gambitQueenText } />} /> 
+							() => <FullDocument title="Gambit Queen"
+									sideThings={[
+										<ArtInfoComment img="girl-secret-agent-chess.jpg"
+											text={`**Algorithm:** Superimposition of two images below`} />,
+										<ArtInfoComment alternate img="cyberpunk-girl-1.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** cyberpunk 2099 blade runner 2049 neon girl secret agent`} />,
+										<ArtInfoComment alternate img="cyberpunk-girl-2.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** cyberpunk girl cyberpunk 2099 blade runner 2049 neon`} />,
+										<ArtInfoComment alternate img="eye-closeup-1.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** closeup of woman's eye with a chessboard reflected on the iris oil painting by James Gurney`} />,
+										<ArtInfoComment alternate img="eye-closeup-2.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** closeup of woman's eye with a chessboard reflected on the iris `} />,
+										<ArtInfoComment alternate img="purple-face.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** closeup woman's face, chess board in the background synthwave neon retro synthwave neon retro`} />,
+										<ArtInfoComment alternate img="green-chessboard.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** chess board tron cyberpunk neon lights synthwave neon retro`} />,
+										<ArtInfoComment alternate img="chess-dojo.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** chess board tron synthwave neon retro`} />,
+										<ArtInfoComment alternate img="chess-go.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** chess board cyberpunk 2099 blade runner 2049 neon`} />,
+										<ArtInfoComment alternate img="chess-fantasy.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** chess board ethereal fantasy hyperdetailed mist Thomas Kinkade`} />,
+										<ArtInfoComment alternate img="chess-girls-fantasy.jpg"
+											backgroundPosition="center bottom"
+											text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** chess queen ethereal fantasy hyperdetailed mist Thomas Kinkade`} />,
+										<ArtInfoComment alternate img="sheses.jpg"
+											backgroundPosition="center bottom"
+											text={`**Algorithm:** chess queen synthwave neon retro`} />,
+									]}
+								
+								text={gambitQueenText} />} /> 
 						<Route path="/codespells" exact component={
 							() => <FullDocument title="CodeSpells" text={codeSpellsText} />} /> 
 						<Route path="/dear-human" exact component={

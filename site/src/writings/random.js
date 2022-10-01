@@ -62,6 +62,7 @@ Main goal: Finish basic landing page for all homepage tiles
 
 #### Dev log
 
+* 10/1/2022 - Added all art info comments for DTC, Teaching, ThoughtSTEM, Minecraft, Gambit Queen, Coding tiles.   About 14 to go?
 * 9/30/2022 - Added all Dolly's Dragon and Music homepage contest tiles
 * 9/29/2022 - Began working on landing pages: ArtInfoComments  
 * 9/28/2022 - Better link colors.  Fixed image sizes in documents.  Revised Don't Teach Coding page.
