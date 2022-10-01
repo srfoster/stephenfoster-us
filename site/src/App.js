@@ -124,9 +124,34 @@ function App() {
 								]}
 								title="Dolly's Dragon" text={dollysDragonText} />} />
 						<Route path="/teaching" exact component={
-							() => <FullDocument title="Teaching" text={teachingText} />} />
-						<Route path="/software-consulting" exact component={
-							() => <FullDocument title="Software Consulting" text={softwareConsultingText} />} />
+							() => <FullDocument
+								sideThings={[
+								  <ArtInfoComment img="socrates-kinkade.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Approximate Prompt:** socrates style of thomas kinkade`} />,
+								]}
+								title="Teaching" text={teachingText} />} />
+						<Route path="/software-consulting"
+							exact component={
+								() => <FullDocument
+									sideThings={[
+										<ArtInfoComment img="circuit-board.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** circuit board tree trending on Artstation Unreal Engine 3D shading shadow depth`} />,
+										<ArtInfoComment alternate img="steampunk-circuit-board.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** circuit board tree steampunk engine`} />,
+										<ArtInfoComment alternate img="cosmic-circuit-board.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** circuit board tree 8k resolution holographic astral cosmic illustration mixed media by Pablo Amaringo`} />,
+										<ArtInfoComment alternate img="kinkade-circuit-board.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** circuit board tree ethereal fantasy hyperdetailed mist Thomas Kinkade`} />,
+										<ArtInfoComment alternate img="tree-chip.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** circuit board tree cyberpunk 2099 blade runner 2049 neon`} />,
+									]}
+									title="Software Consulting" text={softwareConsultingText} />} />
 						<Route path="/gambit-queen" exact component={
 							() => <FullDocument title="Gambit Queen" text={ gambitQueenText } />} /> 
 						<Route path="/codespells" exact component={
@@ -180,7 +205,41 @@ function App() {
 						<Route path="/philosophy" exact component={
 							() => <FullDocument title="Philosophy" text={philosophyText} />} /> 
 						<Route path="/coding" exact component={
-							() => <FullDocument title="Coding" text={codingText} />} /> 
+							() => <FullDocument
+								sideThings={
+									[
+										<ArtInfoComment img="gandalf-with-computer.jpg"
+											backgroundPosition="center bottom"
+											text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** cyberpunk gandalf oil painting by James Gurney`} />,
+
+									 <ArtInfoComment alternate img="cyberpunk-gandalf.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** `} />,
+										<ArtInfoComment alternate img="city-wizard.jpg"
+											backgroundPosition="center bottom"
+											text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** wizard with a staff in a cyberpunk urban setting oil painting by James Gurney`} />,
+										<ArtInfoComment alternate img="hacker-beanie.jpg"
+											backgroundPosition="center bottom"
+											text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** hacker with sunglasses and a hoodie oil painting by James Gurney`} />,
+										<ArtInfoComment alternate img="scifi-wizard-1.jpg"
+											backgroundPosition="center bottom"
+											text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** science fiction wizard oil painting by James Gurney`} />,
+										<ArtInfoComment alternate img="scifi-wizard-2.jpg"
+											backgroundPosition="center top"
+											text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** wizard hacker oil painting by James Gurney`} />,
+									]
+								}
+								title="Coding" text={codingText} />} /> 
 
             <Route path="/random" exact component={
 							() => <FullDocument
@@ -195,11 +254,15 @@ function App() {
 						<Route path="/dont-teach-coding" exact component={
 							() => <FullDocument title=""
 								sideThings={
-									<>
-									<ArtInfoComment img="sci-fi-tablet.jpg" text={`**Algorithm:** Stable Diffusion
+									[
+									 <ArtInfoComment img="sci-fi-tablet.jpg" text={`**Algorithm:** Stable Diffusion
 
-**Prompt:** computer terminal cyberpunk 2099 blade runner 2049 neon`} />
-									</>
+**Prompt:** computer terminal cyberpunk 2099 blade runner 2049 neon`} />,
+
+									 <ArtInfoComment alternate img="coop-dot.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** computer terminal synthwave neon retro`} />,
+									]
 								}
 								text={["# Don't Teach Coding", <img style={{ border: "1px solid black", marginRight: 10 }} width={300} src="/dont-teach-coding-cover.jpg" />,
 `A book I wrote (with the brilliant Dr. Lindsey Handley) about how to teach and learn coding in the upcoming century. You can [get it on Amazon here](https://www.amazon.com/gp/product/1119602629).
@@ -291,7 +354,7 @@ const Writings = () => {
 			<GridItem>
 				<WritingLink
 					title="ThoughtSTEM"
-					img="dark-circuit-board.jpg"
+					img="circuit-board.jpg"
 					slug="software-consulting"
 					summary={["I run a software consulting company.  ", <ClickHere />, " if you're curious about our past projects, or if you're looking for software consulting."]}
 					/>
