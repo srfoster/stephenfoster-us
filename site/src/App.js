@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo} from "react";
 import { HashRouter as Router, Route, Link, Switch, useHistory } from "react-router-dom";
 
-import { Avatar, Button, Paper, Card, CardActions, CardContent, CardMedia, Container, Grid, Fade, Typography, Zoom} from '@mui/material';
+import { Avatar, Button, Paper, Card, CardActions, CardContent, CardHeader, CardMedia, Container, Grid, Fade, Typography, Zoom} from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
@@ -726,17 +726,39 @@ const FullDocument = (props) => {
 	let sideThings = props.sideThings
 
 	let components = {
-		code({ node, inline, className, children, ...props }) {
-			console.log("className", className)
-			const match = /language-(\w+)/.exec(className || "");
-			return !inline && match && match[1] === "music" ? (
+		pre: ({ node, inline, className, children, ...props }) => {
+			let match; 
+			
+			if(children[0] && children[0].type == "code")
+			  match = /language-(\w+)/.exec(children[0].props.className || "");
+
+			if(!match)
+			  return <pre className={className} {...props}>{children}</pre>
+
+			let codeText = children[0].props.children[0]
+
+			let ret = (!inline &&
+				match[1] === "music") ? (
 				<Score
 					id={uniqid()}
-					notation={`${children}`.replace(/\n$/, "")}
+					notation={`${codeText}`.replace(/\n$/, "")}
 				/>
+			) : match[1] === "card" ? (
+					<>
+						<Card>
+						  <CardHeader title={ codeText.split("\n")[0] } />
+						  <CardContent>
+							{codeText.split("\n").slice(1)}
+				          </CardContent>
+						</Card>
+					</>	
 			) : (
-				<code className={className} {...props}>{children}</code>
+				<code className={className} {...props}>{codeText}</code>
 			);
+
+			console.log("ret", ret)
+
+			return ret
 		}
 	}
 
