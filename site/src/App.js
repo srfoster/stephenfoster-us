@@ -725,7 +725,10 @@ const FullDocument = (props) => {
 	let text;
 	let sideThings = props.sideThings
 
+
 	let components = {
+		//We hijack the markdown for code like: ```language {some content on many lines}```
+		//  Find pre tags with code inside, and use the language to render various components
 		pre: ({ node, inline, className, children, ...props }) => {
 			let match; 
 			
@@ -743,10 +746,10 @@ const FullDocument = (props) => {
 					id={uniqid()}
 					notation={`${codeText}`.replace(/\n$/, "")}
 				/>
-			) : match[1] === "card" ? (
+			) : match[1] === "card" ? ( //TODO: Can we give state to these in-line components that come from the document text?
 					<>
 						<Card>
-						  <CardHeader title={ codeText.split("\n")[0] } />
+						  <CardHeader title={codeText.split("\n")[0] } />
 						  <CardContent>
 							{codeText.split("\n").slice(1)}
 				          </CardContent>
