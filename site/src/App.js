@@ -322,12 +322,13 @@ function App() {
 								}
 								title="Coding" text={codingText} />} /> 
 
-            <Route path="/random" exact component={
+            <Route path="/main" exact component={
 							() => <FullDocument
 								sideThings={<ArtInfoComment img="hacker.png" text={`**Algorithm:** Stable Diffusion
 
 **Approximate Prompt:** hacker in the matrix, style of thomas kinkade`} />}
-								title="Random" text={randomText} />} />
+								title="" text={[
+									randomText]} />} />
 						<Route path="/the-polite-barbarians" exact component={
 							() => <FullDocument title="The Polite Barbarians" text={politeBarbariansText} />} />
 						<Route path="/coding-for-babies" exact component={
@@ -383,8 +384,14 @@ function SiteHeader(props) {
 
 function Root() {
 	return <>
-		<p style={{ width: "50%" }}>Under construction, breadth-first (many dead links).</p>
-		<p>Please enjoy my ai-generated art.</p>
+		<video width={500} controls>
+	      <source src="test-e1.mp4" type="video/mp4" />
+	      Your browser does not support the video tag.
+		</video>
+		<br />
+		<br />
+		<p style={{ width: "50%", display: "none" }}>Under construction, breadth-first (many dead links).</p>
+		<p style={{ display: "none"}}>Please enjoy my ai-generated art.</p>
 		<Writings />
 		<br />
 		<br />
@@ -410,10 +417,10 @@ const Writings = () => {
 		<Grid container spacing={2} alignItems="bottom">
 			<GridItem>
 				<WritingLink
-					title="Random"
+					title="What's New?"
 					img="hacker.png"
-					slug="random"
-					summary={[<ClickHere/>, " if you want to be pulled into the depths of the website construction process, a minefield of dead links, misspellings, and unfinished thoughts."]}
+					slug="main"
+					summary={[<ClickHere/>, " to see what's new!"]}
 					/>
 			</GridItem>
 			<GridItem>
@@ -729,6 +736,8 @@ const FullDocument = (props) => {
 	let components = {
 		//We hijack the markdown for code like: ```language {some content on many lines}```
 		//  Find pre tags with code inside, and use the language to render various components
+		//TODO: But we can't render markdown inside those custom components (not working for some reason)
+		//   So the benefit goes down significantly.  Can we fix this?
 		pre: ({ node, inline, className, children, ...props }) => {
 			let match; 
 			
@@ -748,12 +757,10 @@ const FullDocument = (props) => {
 				/>
 			) : match[1] === "card" ? ( //TODO: Can we give state to these in-line components that come from the document text?
 					<>
-						<Card>
-						  <CardHeader title={codeText.split("\n")[0] } />
-						  <CardContent>
-							{codeText.split("\n").slice(1)}
-				          </CardContent>
-						</Card>
+						<details>
+						  <summary>{codeText.split("\n")[0] }</summary>
+						  <ReactMarkdown children={codeText.split("\n").slice(1)} />
+						</details>
 					</>	
 			) : (
 				<code className={className} {...props}>{codeText}</code>

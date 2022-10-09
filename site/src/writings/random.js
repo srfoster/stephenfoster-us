@@ -1,12 +1,27 @@
+import ReactMarkdown from 'react-markdown';
+
 export const text =
-`
-![/hacker.png](/hacker.png)
+  [<ReactMarkdown>{ `
+# October 9th, 2022 - Sunday
 
-Current subgoal: Finish all art info comments on landing pages.  Do page about homepage tile contest
-Main goal: Finish basic landing page for all homepage tiles
+Hello, World! 
 
+I began rebuilding this website in September, and I finally decided to start blogging about my progress.
+I'll try to use the blog to communicate what's new with the very, very large
+undertaking.  Coming up:
 
-#### Links
+* **October 10th** - Make homepage video.  Do new release.
+* **October 11th** - Get organized: Start setting dates for various sub-projects  
+  - Home page tile contest blog post.  Complete home page tile side panels on all pages
+  - Fix contact me button
+  - What else?
+
+`}</ReactMarkdown>]
+  
+  /*
+      Old notes
+*  **Main goal**: Finish basic landing page for all homepage tiles
+* **Current subgoal**: Finish all art info comments on landing pages.  Do page about homepage tile contest
 
 * Books (TODO: Make tiles)
   - DONE: [Short Story Collection](/#/short-stories)
@@ -77,4 +92,5 @@ Main goal: Finish basic landing page for all homepage tiles
 * 9/14/2022 - Made the text visible on top of the homepage image tiles.  TODO: Bring back about me tile!  Added sc2 tile to homepage.  Added images on the content landing pages.
 * 9/13/2022 - Made website tiles have pictures only.  Still not sure if this is the best (maybe add back the titles?).  Might need some A/B tests.  Oops lost the about me...  TODO: Add in fade
 * 9/12/2022 - Switched to darkmode.  Learned that it takes a long time to add a new top-level tile to the homepage, should shorten this process (but should decide first how much content deserves a full tile...).  TODO: Maybe make a script.  Started a wiki on the [random](/#/random) page.  Considered that maybe a wiki would make a better homepage, or at least that the homepage could have more text on it...
-`
+
+*/
