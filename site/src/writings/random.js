@@ -1,17 +1,86 @@
+import { useState } from "react";
+
 import ReactMarkdown from 'react-markdown';
 
+import Confetti from 'react-confetti'
+import useWindowSize from 'react-use/lib/useWindowSize'
+import ReactPlayer from 'react-player/lazy';
+import { Button} from '@mui/material';
+import {dark} from 'react-syntax-highlighter/dist/esm/styles/prism'
+import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
+
+let VideoDemo = (props) => { 
+  const [videoEnded, setVideoEnded] = useState(false)
+  const { width, height } = useWindowSize()
+
+  return <>
+    <ReactPlayer
+      url="react-player-demo.mp4"
+      controls={true}
+      onStart={() => { setVideoEnded(false) }}
+      onEnded={() => { setVideoEnded(true) }}
+    /> 
+    {videoEnded ? <>
+      <Confetti width={width} height={height} />
+      <Button onClick={() => { setVideoEnded(false)}}>Make it stop happening</Button>
+    </> : ""}
+  </>
+}
+
 export const text =
-  [<ReactMarkdown>{ `
+  [<ReactMarkdown
+    components={{
+      code({node, inline, className, children, ...props}) {
+        const match = /language-(\w+)/.exec(className || '')
+        return !inline && match ? (
+          <SyntaxHighlighter
+            children={String(children).replace(/\n$/, '')}
+            style={dark}
+            language={match[1]}
+            PreTag="div"
+            {...props}
+          />
+        ) : (
+          <code className={className} {...props}>
+            {children}
+          </code>
+        )
+      }
+    }} 
+  >{`
+# October 10th, 2022 - Monday 
+
+I created my new homepage video today.  
+
+I want to make a big shout out to the makers of the \`react-player\` library.  Very nice!  Quick demo:
+
+\`\`\`js
+import ReactPlayer from 'react-player/lazy';
+
+let CoolThing = (props) =>
+  <ReactPlayer 
+    url="whatever" 
+    onEnded={()=>{
+      //Set your react state here...
+    }}
+  />
+\`\`\`
+
+Let's combine it with \`react-confetti\`:
+`}</ReactMarkdown>,
+<VideoDemo />,
+
+<ReactMarkdown>{`
 # October 9th, 2022 - Sunday
 
 Hello, World! 
 
 I began rebuilding this website in September, and I finally decided to start blogging about my progress.
-I'll try to use the blog to communicate what's new with the very, very large
+I'll try to use blogs posts to communicate what's new with the very, very large
 undertaking.  Coming up:
 
 * **October 10th** - Make homepage video.  Do new release.
-* **October 11th** - Get organized: Start setting dates for various sub-projects  
+* **October 11th** - Get organized: Start setting completion dates for various sub-projects  
   - Home page tile contest blog post.  Complete home page tile side panels on all pages
   - Fix contact me button
   - What else?
