@@ -411,11 +411,31 @@ const Writings = () => {
 	return showing ? showing : <>
 		<Grid container spacing={2} alignItems="bottom">
 	      <Grid item xl={6} lg={6} md={6} xs={12}>
-			<ReactPlayer
-				url="main-e1.mp4"
-				controls={true}
-			    onEnded={() => { setVideoEnded(true) }}
-			/>
+		    <Card>
+			  <CardContent>
+				<ReactPlayer
+				    width="100%"
+					url="main-e1.mp4"
+					controls={true}
+					onEnded={() => { setVideoEnded(true) }}
+				/>
+			  </CardContent>
+		    </Card>
+		  </Grid>
+	      <Grid item xl={6} lg={6} md={6} xs={12}>
+		    <Card>
+			  <CardContent>
+				   <ReactMarkdown>
+					{`# About Me
+
+I'm a software architect, designer, b/vlogger, novelist, professor, and many other things.
+Although it'll take me years, I'm currently working to consolodate my various projects in one place.
+
+Welcome to my site.  
+				   `}
+				   </ReactMarkdown>
+			  </CardContent>
+		    </Card>
 		  </Grid>
 		</Grid>
 		<br/>

@@ -1,13 +1,20 @@
+//TODO: Factor blog posts into separate files now that we're trying to post daily...
+
 import { useState } from "react";
 
 import ReactMarkdown from 'react-markdown';
 
-import Confetti from 'react-confetti'
 import useWindowSize from 'react-use/lib/useWindowSize'
 import ReactPlayer from 'react-player/lazy';
 import { Button} from '@mui/material';
 import {dark} from 'react-syntax-highlighter/dist/esm/styles/prism'
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
+
+import { Calendar, momentLocalizer } from 'react-big-calendar'
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+import moment from 'moment'
+
+const localizer = momentLocalizer(moment)
 
 let VideoDemo = (props) => { 
   const [videoEnded, setVideoEnded] = useState(false)
@@ -21,14 +28,13 @@ let VideoDemo = (props) => {
       onEnded={() => { setVideoEnded(true) }}
     /> 
     {videoEnded ? <>
-      <Confetti width={width} height={height} />
-      <Button onClick={() => { setVideoEnded(false)}}>Make it stop happening</Button>
+      <Button onClick={() => { setVideoEnded(false)}}>It happened!  (Click to undo)</Button>
     </> : ""}
   </>
 }
 
-export const text =
-  [<ReactMarkdown
+let MyReactMarkdown = (props) =>
+  <ReactMarkdown //TODO: Factor this (and the ReactMarkdown on the homepage) into a single shared util file...
     components={{
       code({node, inline, className, children, ...props}) {
         const match = /language-(\w+)/.exec(className || '')
@@ -47,7 +53,53 @@ export const text =
         )
       }
     }} 
-  >{`
+  >{ props.children }</ReactMarkdown>
+
+
+export const text =
+  [
+    //Oct 11
+    <MyReactMarkdown>{`
+# October 11th, 2022 - Tuesday 
+
+Added text to homepage today:
+
+> *I'm a software architect, designer, b/vlogger, novelist, professor, and many other things. Although it'll take me years, I'm currently working to consolodate my various projects in one place.*
+
+> *Welcome to my site.*
+
+I'll probably change it (and the intro video) many times as this project evolves, but it's important
+to start somewhere.
+
+A few things I'd like to accomplish in the upcoming weeks:
+
+* Finalize all landing pages reachable from homepage tiles
+* Fix the "Contact Me" button
+* Start setting a schedule for content production 
+
+I installed \`react-big-calendar\` to help me communicate my schedule when the time comes.
+(Obviously, we're going to have to fix the default color scheme, but the functionality is there.)
+`}</MyReactMarkdown>,
+<Calendar
+localizer={localizer}
+  defaultDate={ new Date(2022,9,11)} 
+  events={[
+    { id: 0,
+      title: "Hello, World",
+      allDay: true,
+      start: "2022-10-11T07:00:00.000Z",
+      end: "2022-10-11T07:00:00.000Z",
+    }  
+]}
+startAccessor="start"
+endAccessor="end"
+style={{ height: 500 }}
+/>
+,
+
+    
+//Oct 10
+<MyReactMarkdown>{`
 # October 10th, 2022 - Monday 
 
 I created my new homepage video today.  
@@ -66,8 +118,9 @@ let CoolThing = (props) =>
   />
 \`\`\`
 
-Let's combine it with \`react-confetti\`:
-`}</ReactMarkdown>,
+You can easily display, for example, a button that shows up only after the video is complete:
+`}</MyReactMarkdown>,
+
 <VideoDemo />,
 
 <ReactMarkdown>{`
@@ -77,13 +130,7 @@ Hello, World!
 
 I began rebuilding this website in September, and I finally decided to start blogging about my progress.
 I'll try to use blogs posts to communicate what's new with the very, very large
-undertaking.  Coming up:
-
-* **October 10th** - Make homepage video.  Do new release.
-* **October 11th** - Get organized: Start setting completion dates for various sub-projects  
-  - Home page tile contest blog post.  Complete home page tile side panels on all pages
-  - Fix contact me button
-  - What else?
+undertaking.  
 
 `}</ReactMarkdown>]
   
