@@ -240,11 +240,32 @@ function App() {
 								]}
 								text={dearHumanText} />} /> 
 						<Route path="/over-the-hills" exact component={
-							() => <FullDocument title="Over the Hills" text={overTheHillsText} />} /> 
+							() => <FullDocument title="Over the Hills" 
+											sideThings={[
+												<ArtInfoComment img="demon-on-tower.jpg"
+														text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** gigantic demon perched on black tower sinister by Greg Rutkowski`} />,
+											]}
+                       text={overTheHillsText} />} /> 
 						<Route path="/nightmare" exact component={
-							() => <FullDocument title="Nightmare" text={nightmareText} />} /> 
+							() => <FullDocument title="Nightmare" 
+											  sideThings={[
+												<ArtInfoComment img="nightmare-world.jpg"
+														text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** portal to nightmare world sinister by Greg Rutkowski`} />,
+											  ]}
+                       text={nightmareText} />} /> 
 						<Route path="/spiritstone" exact component={
-							() => <FullDocument title="Spiritstone" text={spiritStoneText} />} /> 
+							() => <FullDocument title="Spiritstone" 
+											  sideThings={[
+												<ArtInfoComment img="skyship.jpg"
+														text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** flying ship floating island in the sky ethereal fantasy hyperdetailed mist Thomas Kinkade`} />,
+											  ]}
+                        text={spiritStoneText} />} /> 
 						<Route path="/storytree" exact component={
 							() => <FullDocument title="Storytree" text={storyTreeText} />} /> 
 						<Route path="/science" exact component={
