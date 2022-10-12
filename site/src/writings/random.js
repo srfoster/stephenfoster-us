@@ -6,12 +6,13 @@ import ReactMarkdown from 'react-markdown';
 
 import useWindowSize from 'react-use/lib/useWindowSize'
 import ReactPlayer from 'react-player/lazy';
-import { Button} from '@mui/material';
+import { Button, Card, CardContent} from '@mui/material';
 import {dark} from 'react-syntax-highlighter/dist/esm/styles/prism'
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import '../App.css';
 import moment from 'moment'
 
 const localizer = momentLocalizer(moment)
@@ -56,8 +57,53 @@ let MyReactMarkdown = (props) =>
   >{ props.children }</ReactMarkdown>
 
 
+let CustomEvent = (props) => { return props.event.title }
+
+
 export const text =
   [
+    <MyReactMarkdown>{`
+# Upcoming Events
+
+
+`}</MyReactMarkdown>,
+
+<Calendar
+  localizer={localizer}
+  views={["month"]}
+  defaultDate={ new Date(2022,9,11)} 
+  events={[
+    { id: 0,
+      title: <>Blog Post<br/><img src="hacker.png" width="100%" /></>,
+      start: "2022-10-12T07:00:00.000Z",
+      end: "2022-10-12T07:00:00.000Z",
+    },
+    { id: 0,
+      title: <>Refactoring<br/><img src="hacker.png" width="100%" /></>,
+      start: "2022-10-13T07:00:00.000Z",
+      end: "2022-10-13T07:00:00.000Z",
+    },
+    { id: 1,
+      title: <>Storytree<br/><img src="tree-with-eyes2.jpg" width="100%" /></>,
+      start: "2022-10-14T07:00:00.000Z",
+      end: "2022-10-14T07:00:00.000Z",
+    }  ,
+]}
+startAccessor="start"
+endAccessor="end"
+style={{ height: 1000 }}
+/>
+,
+    //Oct 12
+    <MyReactMarkdown>{`
+# October 11th, 2022 - Wednesday
+
+Made a prototype of the Upcoming Events calendar (see above).
+
+Next steps: Refactor.  Start populating it. 
+
+`}</MyReactMarkdown>,
+
     //Oct 11
     <MyReactMarkdown>{`
 # October 11th, 2022 - Tuesday 
@@ -78,10 +124,10 @@ A few things I'd like to accomplish in the upcoming weeks:
 * Start setting a schedule for content production 
 
 I installed \`react-big-calendar\` to help me communicate my schedule when the time comes.
-(Obviously, we're going to have to fix the default color scheme, but the functionality is there.)
 `}</MyReactMarkdown>,
 <Calendar
-localizer={localizer}
+  localizer={localizer}
+  views={["month"]}
   defaultDate={ new Date(2022,9,11)} 
   events={[
     { id: 0,

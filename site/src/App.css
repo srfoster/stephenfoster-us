@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+/* React Big Calendar Hacks for darkmode */
+.rbc-off-range-bg{
+  background: black; 
+}
+
+.rbc-today{
+  background: #0092ff; 
+}
+
+.rbc-event{
+  background: #31ad79;
+}
+
+.rbc-btn-group button{
+  color: #0092ff; 
+}
