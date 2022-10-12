@@ -1,12 +1,143 @@
+//TODO: Factor blog posts into separate files now that we're trying to post daily...
+
+import { useState } from "react";
+
+import ReactMarkdown from 'react-markdown';
+
+import useWindowSize from 'react-use/lib/useWindowSize'
+import ReactPlayer from 'react-player/lazy';
+import { Button} from '@mui/material';
+import {dark} from 'react-syntax-highlighter/dist/esm/styles/prism'
+import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
+
+import { Calendar, momentLocalizer } from 'react-big-calendar'
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+import moment from 'moment'
+
+const localizer = momentLocalizer(moment)
+
+let VideoDemo = (props) => { 
+  const [videoEnded, setVideoEnded] = useState(false)
+  const { width, height } = useWindowSize()
+
+  return <>
+    <ReactPlayer
+      url="react-player-demo.mp4"
+      controls={true}
+      onStart={() => { setVideoEnded(false) }}
+      onEnded={() => { setVideoEnded(true) }}
+    /> 
+    {videoEnded ? <>
+      <Button onClick={() => { setVideoEnded(false)}}>It happened!  (Click to undo)</Button>
+    </> : ""}
+  </>
+}
+
+let MyReactMarkdown = (props) =>
+  <ReactMarkdown //TODO: Factor this (and the ReactMarkdown on the homepage) into a single shared util file...
+    components={{
+      code({node, inline, className, children, ...props}) {
+        const match = /language-(\w+)/.exec(className || '')
+        return !inline && match ? (
+          <SyntaxHighlighter
+            children={String(children).replace(/\n$/, '')}
+            style={dark}
+            language={match[1]}
+            PreTag="div"
+            {...props}
+          />
+        ) : (
+          <code className={className} {...props}>
+            {children}
+          </code>
+        )
+      }
+    }} 
+  >{ props.children }</ReactMarkdown>
+
+
 export const text =
-`
-![/hacker.png](/hacker.png)
+  [
+    //Oct 11
+    <MyReactMarkdown>{`
+# October 11th, 2022 - Tuesday 
 
-Current subgoal: Finish all art info comments on landing pages.  Do page about homepage tile contest
-Main goal: Finish basic landing page for all homepage tiles
+Added text to homepage today:
 
+> *I'm a software architect, designer, b/vlogger, novelist, professor, and many other things. Although it'll take me years, I'm currently working to consolodate my various projects in one place.*
 
-#### Links
+> *Welcome to my site.*
+
+I'll probably change it (and the intro video) many times as this project evolves, but it's important
+to start somewhere.
+
+A few things I'd like to accomplish in the upcoming weeks:
+
+* Finalize all landing pages reachable from homepage tiles
+* Fix the "Contact Me" button
+* Start setting a schedule for content production 
+
+I installed \`react-big-calendar\` to help me communicate my schedule when the time comes.
+(Obviously, we're going to have to fix the default color scheme, but the functionality is there.)
+`}</MyReactMarkdown>,
+<Calendar
+localizer={localizer}
+  defaultDate={ new Date(2022,9,11)} 
+  events={[
+    { id: 0,
+      title: "Hello, World",
+      allDay: true,
+      start: "2022-10-11T07:00:00.000Z",
+      end: "2022-10-11T07:00:00.000Z",
+    }  
+]}
+startAccessor="start"
+endAccessor="end"
+style={{ height: 500 }}
+/>
+,
+
+    
+//Oct 10
+<MyReactMarkdown>{`
+# October 10th, 2022 - Monday 
+
+I created my new homepage video today.  
+
+I want to make a big shout out to the makers of the \`react-player\` library.  Very nice!  Quick demo:
+
+\`\`\`js
+import ReactPlayer from 'react-player/lazy';
+
+let CoolThing = (props) =>
+  <ReactPlayer 
+    url="whatever" 
+    onEnded={()=>{
+      //Set your react state here...
+    }}
+  />
+\`\`\`
+
+You can easily display, for example, a button that shows up only after the video is complete:
+`}</MyReactMarkdown>,
+
+<VideoDemo />,
+
+<ReactMarkdown>{`
+# October 9th, 2022 - Sunday
+
+Hello, World! 
+
+I began rebuilding this website in September, and I finally decided to start blogging about my progress.
+I'll try to use blogs posts to communicate what's new with the very, very large
+undertaking.  
+
+`}</ReactMarkdown>]
+  
+  /*
+      Old notes
+*  **Main goal**: Finish basic landing page for all homepage tiles
+* **Current subgoal**: Finish all art info comments on landing pages.  Do page about homepage tile contest
 
 * Books (TODO: Make tiles)
   - DONE: [Short Story Collection](/#/short-stories)
@@ -77,4 +208,5 @@ Main goal: Finish basic landing page for all homepage tiles
 * 9/14/2022 - Made the text visible on top of the homepage image tiles.  TODO: Bring back about me tile!  Added sc2 tile to homepage.  Added images on the content landing pages.
 * 9/13/2022 - Made website tiles have pictures only.  Still not sure if this is the best (maybe add back the titles?).  Might need some A/B tests.  Oops lost the about me...  TODO: Add in fade
 * 9/12/2022 - Switched to darkmode.  Learned that it takes a long time to add a new top-level tile to the homepage, should shorten this process (but should decide first how much content deserves a full tile...).  TODO: Maybe make a script.  Started a wiki on the [random](/#/random) page.  Considered that maybe a wiki would make a better homepage, or at least that the homepage could have more text on it...
-`
+
+*/
