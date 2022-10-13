@@ -1,22 +1,25 @@
-//Hmmm, probably don't need this file anymore...
+import { text as upcoming } from "./upcoming";
+import { text as post2022_10_9 } from "./2022/10/09/index";
+import { text as post2022_10_10 } from "./2022/10/10/index";
+import { text as post2022_10_11 } from "./2022/10/11/index";
+import { text as post2022_10_12 } from "./2022/10/12/index";
+import { text as post2022_10_13 } from "./2022/10/13/index";
 
-import * as Posts from "./main/index";
-
-export const text = Object.values(Posts)
-  
-  
-  /*
-* [0.0.1 or 0.0.2?] Design good online reading experience:
-  - Pick some piece of text and decide how best to typeset / animate / audio / video?
-  - Allow website users to subscribe to be notified of fresh content (ask a few people to help me beta test this)
-  - Begin releasing one book (with regular schedule)
-
-* Add google analytics, test
-* Do 0.0.1 release.  Change email signatures, linkedin, oc bio, etc... 
-* Figure out release schedule for various stories
-* Teaser videos for various landing pages?
+import { FancyReactMarkdown } from "../../components/index"
 
 
+let posts = [
+  upcoming, 
+  post2022_10_13,
+  post2022_10_12,
+  post2022_10_11,
+  post2022_10_10,
+  post2022_10_9,
+]
+
+export default posts
+
+/*
 #### Dev log
 
 * 10/2/2022 - Added art for CodeSpells and Dear Human
