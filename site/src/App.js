@@ -34,6 +34,8 @@ import * as Tone from "tone";
 
 import ReactPlayer from 'react-player/lazy';
 
+import { WritingIds, WritingLinkCard, WritingLink, ClickHere } from "./components/WritingLinkCards"
+
 function App() {
 
 	const theme = createTheme({
@@ -413,9 +415,6 @@ function Root() {
 }
 
 
-const ClickHere = (props) => {
-	return <Fade in={true} timeout={1000}><span style={{ textDecoration: "underline" }}>Click</span></Fade>
-}
 
 const GridItem = (props) => {
 	return <Grid item xl={3} lg={4} md={6} xs={6}>
@@ -576,13 +575,7 @@ Welcome to my site.
 				/>
 			</GridItem>
 			<GridItem>
-				<WritingLink
-					title="The Storytree"
-					img="tree-with-eyes2.jpg"
-					slug="storytree"
-					//backgroundPosition="center bottom"
-					summary={[<ClickHere />, " if you like science fiction novels about evil trees."]}
-				/>
+				<WritingLinkCard writingId={ WritingIds.STORYTREE } />
 			</GridItem>
 			<GridItem>
 				<WritingLink
@@ -675,43 +668,6 @@ const ArtInfoComment = (props) => {
 	)
 }
 
-const WritingLink = (props) => {
-	const history = useHistory()
-	const [elevation, setElevation] = useState(1)
-	const [showContent, setShowContent] = useState(false)
-
-	return <>
-		<a style={{ cursor: "pointer" }} onClick={() => {
-			history.push("/" + props.slug)
-			window.scrollTo(0, 0)
-		}}>
-			<Card
-				onMouseOver={() => { setElevation(2); setShowContent(true) }}
-				onMouseLeave={() => { setElevation(1); setShowContent(false) }}
-				elevation={elevation}>
-				{!props.img ? "" :
-					<CardMedia style={{
-						"background": "url(" + props.img + ")",
-						backgroundSize:
-							props.backgroundSize ? props.backgroundSize : "cover",
-						backgroundPosition:
-							props.backgroundPosition ? props.backgroundPosition : "0% 0%",
-						height: 300, opacity: elevation == 1 ? 0.80 : 1
-					}}>
-						<Fade in={true} timeout={5000}>
-							<div>
-								<CardContent style={{ color: "white", backgroundColor: "rgba(0,0,0,.75)" }}>
-									{props.title}
-									{(showContent || props.showContent) ? <div style={{ marginTop: 15 }}>{props.summary}</div> : ""}
-								</CardContent>
-							</div>
-						</Fade>
-					</CardMedia>
-				}
-			</Card>
-		</a>
-	</>
-}
 
 
 //Inspired by: https://codesandbox.io/s/markdown-abcjs-forked-2dbtly?file=/src/App.js:350-412
