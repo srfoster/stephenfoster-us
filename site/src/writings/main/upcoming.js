@@ -50,7 +50,7 @@ const style = {
 export const text =
   [
     <FancyReactMarkdown>{`
-# Upcoming Events
+# Calendar
 `}</FancyReactMarkdown>,
 
 <Calendar
@@ -74,11 +74,16 @@ export const text =
       end: "2022-10-14T07:00:00.000Z",
     }  ,
     { id: 3,
-      title: <PopupEvent title="Refactoring" imgSrc="hacker.png" fullText="Do TODOs from yesterday's dev session"/>,
+      title: <PopupEvent title="Installation" imgSrc="hacker.png" fullText="Researched charting libraries in react and installed one"/>,
       start: "2022-10-15T07:00:00.000Z",
       end: "2022-10-15T07:00:00.000Z",
     }  ,
     { id: 4,
+      title: <PopupEvent title="Refactoring" imgSrc="hacker.png" fullText="Do TODOs from Oct 14"/>,
+      start: "2022-10-17T07:00:00.000Z",
+      end: "2022-10-17T07:00:00.000Z",
+    }  ,
+    { id: 5,
       title: <PopupEvent title="Storytree" imgSrc="tree-with-eyes2.jpg" fullText="Post concept art?"/>,
       start: "2022-10-21T07:00:00.000Z",
       end: "2022-10-21T07:00:00.000Z",

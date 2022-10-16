@@ -5,7 +5,7 @@ export const text =
 [
  <FancyReactMarkdown>{`# October 14th, 2022 - Friday
 
-Today was another refactoring day.  But I wanted to do SOME work on *The Storytree* -- the book I'm currently writing.  So I began to refactor my homepage cards into components that can be referenced elsewhere.
+Today was another refactoring day.  But I wanted to do SOME work on *The Storytree*, the book I'm currently writing.  So I began to refactor my homepage cards into components that can be referenced elsewhere.
 
 Like, so...
 `}</FancyReactMarkdown>,
