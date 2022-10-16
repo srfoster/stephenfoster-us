@@ -60,7 +60,7 @@ export const text =
 [
  <FancyReactMarkdown>{`# October 15th, 2022 - Saturday
 
-A lot of the things I want to say involve data.  So I installed a charts/graphs library called \`react-chartjs-2\`.  Of the ones I looked at, this one looked the most straightforward (and least encumbered by some kind of weird license).  Example output:
+A lot of the things I want to say involve data.  So I installed a charts/graphs library called \`react-chartjs-2\`.  Of the many charting libraries I looked at, this one looked the most straightforward (and the most open source).  Example output:
     `}</FancyReactMarkdown>,
       <Line data={data} />
   ]

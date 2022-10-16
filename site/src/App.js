@@ -26,15 +26,14 @@ import { text as visualArtsText } from './writings/visual-arts';
 import { text as philosophyText } from './writings/philosophy';
 import { text as codingText } from './writings/coding';
 import { text as homepageTileContestText } from './writings/homepage-tile-contest';
-import ReactMarkdown from 'react-markdown';
+import { text as sc2Text } from './writings/sc2';
 
-import SheetMusic from "@slnsw/react-sheet-music";
-import uniqid from "uniqid";
-import * as Tone from "tone";
+import ReactMarkdown from 'react-markdown';
 
 import ReactPlayer from 'react-player/lazy';
 
 import { WritingIds, WritingLinkCard, WritingLink, ClickHere } from "./components/WritingLinkCards"
+import { FancyReactMarkdown } from "./components/index"
 
 function App() {
 
@@ -56,10 +55,7 @@ function App() {
 						<Route path="/homepage-tile-contest" exact component={
 							() => <FullDocument title="Homepage Tile Contest" text={homepageTileContestText} />} />
 						<Route path="/starcraft-ii" exact component={
-							() => <FullDocument title="StarCraft II" text={`![sc2](/sc2.png)
-							
-      I am not good at this game.  But I love it. ~Stephen
-							`} />} />
+							() => <FullDocument title="StarCraft II" text={sc2Text} />} />
 
 						<Route path="/minecraft" exact component={
 							() => <FullDocument title="Minecraft Modding"
@@ -602,12 +598,7 @@ Welcome to my site.
 				/>
 			</GridItem>
 			<GridItem>
-				<WritingLink
-					title="Music"
-					img="cubist-violin.jpg"
-					slug="music"
-					summary={["I'm on a quest to become a better musician.  ", <ClickHere />, " if you're interested in music and the learning thereof."]}
-				/>
+				<WritingLinkCard writingId={ WritingIds.MUSIC } />
 			</GridItem>
 			<GridItem>
 				<WritingLink
@@ -618,12 +609,7 @@ Welcome to my site.
 				/>
 			</GridItem>
 			<GridItem>
-				<WritingLink
-					title="StarCraft II"
-					img="sc2.png"
-					slug="starcraft-ii"
-					summary={["I play and am not very good.  ", <ClickHere />, " to learn more about my quest to master this very difficult game.", <p>(This art piece was done with style-transfer, unlike the others.)</p>]}
-				/>
+				<WritingLinkCard writingId={ WritingIds.SC2 } />
 			</GridItem>
 			<GridItem>
 				<WritingLink
@@ -669,49 +655,6 @@ const ArtInfoComment = (props) => {
 }
 
 
-
-//Inspired by: https://codesandbox.io/s/markdown-abcjs-forked-2dbtly?file=/src/App.js:350-412
-function Score({ notation, id }) {
-	const [isPlaying, setIsPlaying] = useState(false);
-
-	const synth = new Tone.PolySynth(Tone.Synth).toDestination();
-
-
-	function onEvent(event) {
-		if (!event) {
-			return;
-		}
-		event.notes.forEach((n) => {
-			synth.triggerAttackRelease(n.name, n.duration);
-		});
-	}
-
-	function play() {
-		if (isPlaying) { //Why??? SF
-			document.getElementById();
-		}
-		setIsPlaying(!isPlaying);
-	}
-
-	return (
-		<>
-			<div style={{
-				backgroundColor: "white"
-			}}>
-				<SheetMusic
-					notation={notation}
-					id={id}
-					isPlaying={isPlaying}
-					onEvent={onEvent}
-					bpm={70}
-				/>
-			</div>
-			{<Button onClick={play}>Play</Button>}
-		</>
-	);
-}
-
-
 function ContactMeComment(props) {
 	return (
 		<Card>
@@ -733,54 +676,14 @@ const FullDocument = (props) => {
 	let text;
 	let sideThings = props.sideThings
 
-
-	let components = {
-		//We hijack the markdown for code like: ```language {some content on many lines}```
-		//  Find pre tags with code inside, and use the language to render various components
-		//TODO: But we can't render markdown inside those custom components (not working for some reason)
-		//   So the benefit goes down significantly.  Can we fix this?
-		pre: ({ node, inline, className, children, ...props }) => {
-			let match;
-
-			if (children[0] && children[0].type == "code")
-				match = /language-(\w+)/.exec(children[0].props.className || "");
-
-			if (!match)
-				return <pre className={className} {...props}>{children}</pre>
-
-			let codeText = children[0].props.children[0]
-
-			let ret = (!inline &&
-				match[1] === "music") ? (
-				<Score
-					id={uniqid()}
-					notation={`${codeText}`.replace(/\n$/, "")}
-				/>
-			) : match[1] === "card" ? ( //TODO: Can we give state to these in-line components that come from the document text?
-				<>
-					<details>
-						<summary>{codeText.split("\n")[0]}</summary>
-						<ReactMarkdown children={codeText.split("\n").slice(1)} />
-					</details>
-				</>
-			) : (
-				<code className={className} {...props}>{codeText}</code>
-			);
-
-			console.log("ret", ret)
-
-			return ret
-		}
-	}
-
 	if (props.text.map) {
 		text = props.text.map((t) => {
 			if (typeof (t) == "string")
-				return <ReactMarkdown components={components}>{t}</ReactMarkdown>
+				return <FancyReactMarkdown>{t}</FancyReactMarkdown>
 			return t
 		})
 	} else {
-		text = <ReactMarkdown components={components}>{props.text}</ReactMarkdown>
+		text = <FancyReactMarkdown>{props.text}</FancyReactMarkdown>
 	}
 	const history = useHistory()
 
