@@ -6,7 +6,7 @@ export const text =
 [
  <FancyReactMarkdown>{`# October 16th, 2022 - Sunday
    
- Big picture: I'm still trying to gather the React components that will let me write about all of the things I plan to write about.  So, I factored out my Score component (for doing sheet music):
+ Big picture: I'm still trying to gather the React components that will let me write about all of the things I plan to write about.  So I factored out my Score component (for doing sheet music):
 `}</FancyReactMarkdown>,
  <Score
     notation={
@@ -16,7 +16,7 @@ K: Am
 |Acea|[^Gb],ecb|[Gc']ecc'|[^F^f]dA^f|[eF]cAc-|cecA|[B,GB][A,Ac][A,Ac]4|
 ` } />,
  <FancyReactMarkdown>{`
- I also factored out two more of my homepage cards, so it'll be easier to write aboth those.  First, there's music:
+ I also factored out two more of my homepage cards.  First, there's music:
 `}</FancyReactMarkdown>,
   <WritingLinkCard writingId={WritingIds.MUSIC} />,
 
