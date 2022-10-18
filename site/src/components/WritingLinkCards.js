@@ -33,6 +33,11 @@ export const WritingIds = {
   JONNY_VAMPIRE: "jonny-vampire",
 }
 
+export const OfficialCoverArts = {
+  [WritingIds.WHATS_NEW]: "hacker.png",
+  [WritingIds.CODING]: "gandalf-with-computer.jpg",
+}
+
 export const ClickHere = (props) => {
 	return <Fade in={true} timeout={1000}><span style={{ textDecoration: "underline" }}>Click</span></Fade>
 }
@@ -164,7 +169,7 @@ export let WritingLinkCard = (props) => {
     if(props.writingId == WritingIds.CODING)
 		return <WritingLink
 					title="Coding"
-					img="gandalf-with-computer.jpg"
+			        img={ OfficialCoverArts[WritingIds.CODING] }
 					slug="coding"
 					backgroundPosition="center bottom"
 					backgroundSize="auto"
