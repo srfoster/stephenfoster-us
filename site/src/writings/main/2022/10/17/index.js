@@ -11,8 +11,6 @@ export const text =
 `}</FancyReactMarkdown>,
  <WritingLinkCard writingId={WritingIds.DONT_TEACH_CODING} />,
  <FancyReactMarkdown>{`
-I also STARTED to factor the homepage image names into a centralized place, so I can update them as the [Homepage Tile Contest](/#/homepage-tile-contest) progresses.  I might even move them into a database at some point, so it'll be nice to have them in one place.
-
-I didn't actually have it in me to do a second big refactorign in one day, though, so... TOMORROW!
+I also STARTED to factor the homepage image names into a centralized place, so I can update them as the [Homepage Tile Contest](/#/homepage-tile-contest) progresses.  I didn't actually have it in me to do a second big refactoring in one day, though, so... TOMORROW!
 `}</FancyReactMarkdown>,
   ]
