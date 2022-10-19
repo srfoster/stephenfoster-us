@@ -53,3 +53,30 @@
 .rbc-btn-group button{
   color: #0092ff; 
 }
+
+.document img {
+  max-width: 100%;
+}
+
+.document a:link {
+  color: lime;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.document a:visited {
+  color: pink;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.document a:hover {
+  color: red;
+  background-color: transparent;
+}
+
+.document a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}

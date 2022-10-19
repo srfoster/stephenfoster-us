@@ -28,7 +28,7 @@ export const WritingIds = {
 
 
   //Smaller one-ffs
-  CODING_FOR_BABIES: "coding-for-babies",
+  CODING_FOR_BABIES: "baby.png",
   POLITE_BARBARIANS: "polite-barbarians",
   JONNY_VAMPIRE: "jonny-vampire",
 }
@@ -44,23 +44,22 @@ export const OfficialCoverArts = {
   [WritingIds.THOUGHTSTEM]: "circuit-board.jpg",
   [WritingIds.MINECRAFT]: "minecraft.jpg",
   [WritingIds.CODING]: "gandalf-with-computer.jpg",
-  [WritingIds.GAMBIT_QUEEN]: "girl-secret-agent-chess.jpg",
-  [WritingIds.CODESPELLS]: "codespells.jpg",
-
-  [WritingIds.DEAR_HUMAN]: "desert-demon.jpg",
-  [WritingIds.DOLLYS_DRAGON]: "egg.png",
-  [WritingIds.OVER_THE_HILLS]: "demon-on-tower.jpg",
-  [WritingIds.NIGHTMARE]: "nightmare-world.jpg",
-  [WritingIds.SPIRITSTONE]: "skyship.jpg",
-  [WritingIds.SCIENCE]: "alchemy.jpg",
-  [WritingIds.SHORT_STORIES]: "wizard-books.jpg",
-  [WritingIds.UNFINISHED_NOVELS]: "ancient-books.jpg",
-  [WritingIds.VISUAL_ARTS]: "weird-woman.jpg",
-  [WritingIds.PHILOSOPHY]: "black-and-green-typewriter.jpg",
+  [WritingIds.GAMBIT_QUEEN]: "gambit_queen",
+  [WritingIds.CODESPELLS]: "codespells",
+  [WritingIds.DEAR_HUMAN]: "dear_human",
+  [WritingIds.DOLLYS_DRAGON]: "dollys-dragon",
+  [WritingIds.OVER_THE_HILLS]: "over-the-hills",
+  [WritingIds.NIGHTMARE]: "nightmare",
+  [WritingIds.SPIRITSTONE]: "spiritstone",
+  [WritingIds.SCIENCE]: "science",
+  [WritingIds.SHORT_STORIES]: "short_stories",
+  [WritingIds.UNFINISHED_NOVELS]: "unfinished_novels",
+  [WritingIds.VISUAL_ARTS]: "visual_arts",
+  [WritingIds.PHILOSOPHY]: "philosophy",
 
 
   //Smaller one-ffs
-  [WritingIds.CODING_FOR_BABIES]: "baby.png",
+  [WritingIds.CODING_FOR_BABIES]: "coding-for-babies",
   [WritingIds.POLITE_BARBARIANS]: "troy.png",
   [WritingIds.JONNY_VAMPIRE]: "vampire3.jpg",
 }
@@ -215,7 +214,7 @@ export let WritingLinkCard = (props) => {
     if(props.writingId == WritingIds.CODESPELLS)
 		return <WritingLink
 					title="CodeSpells"
-			        img={ OfficialCoverArts[WritingIds.CODESPELLS] }
+					img="codespells.jpg"
 					slug="codespells"
 					backgroundPosition="center bottom"
 					backgroundSize="fit"
@@ -225,7 +224,7 @@ export let WritingLinkCard = (props) => {
     if(props.writingId == WritingIds.DEAR_HUMAN)
 		return <WritingLink
 					title="Dear Human"
-			        img={ OfficialCoverArts[WritingIds.DEAR_HUMAN] }
+					img="desert-demon.jpg"
 					slug="dear-human"
 					//backgroundPosition="top right"
 					summary={[<ClickHere />, " here if you like magical murder mysteries and psychological thrillers."]}
@@ -234,7 +233,7 @@ export let WritingLinkCard = (props) => {
     if(props.writingId == WritingIds.DOLLYS_DRAGON)
 		return <WritingLink
 					title="Dolly's Dragon"
-			        img={ OfficialCoverArts[WritingIds.DOLLYS_DRAGON] }
+					img="egg.png"
 					slug="dollys-dragon"
 					backgroundPosition="center bottom"
 					summary={["When I was 13, I wrote a book. ", <ClickHere />, " if you like innocent high fantasy about dragons."]}
@@ -243,7 +242,7 @@ export let WritingLinkCard = (props) => {
     if(props.writingId == WritingIds.OVER_THE_HILLS)
 		return <WritingLink
 					title="Over the Hills"
-			        img={ OfficialCoverArts[WritingIds.OVER_THE_HILLS] }
+					img="demon-on-tower.jpg"
 					slug="over-the-hills"
 					summary={[<ClickHere />, " if you like dark fantasy novels about wizards breaking out of prison."]}
 				/>
@@ -251,7 +250,7 @@ export let WritingLinkCard = (props) => {
     if(props.writingId == WritingIds.NIGHTMARE)
 		return <WritingLink
 					title="Nightmare"
-			        img={ OfficialCoverArts[WritingIds.NIGHTMARE] }
+					img="nightmare-world.jpg"
 					slug="nightmare"
 					//backgroundPosition="center bottom"
 					summary={[<ClickHere />, " if you like dark fantasy about rifts between our world and the nightmares beyond."]}
@@ -260,7 +259,7 @@ export let WritingLinkCard = (props) => {
     if(props.writingId == WritingIds.SPIRITSTONE)
 		return <WritingLink
 					title="Spiritstone Chronicles"
-			        img={ OfficialCoverArts[WritingIds.SPIRITSTONE] }
+					img="skyship.jpg"
 					slug="spiritstone"
 					//backgroundPosition="center bottom"
 					//backgroundSize="auto"
@@ -270,7 +269,7 @@ export let WritingLinkCard = (props) => {
     if(props.writingId == WritingIds.SCIENCE)
 		return <WritingLink
 					title="Scientific Research"
-			        img={ OfficialCoverArts[WritingIds.SCIENCE] }
+					img="alchemy.jpg"
 					slug="science"
 					summary={["Once upon a time, I went to grad school and did research.  ", <ClickHere />, " if you like human-computer interaction and coding education research."]}
 				/>
@@ -278,7 +277,7 @@ export let WritingLinkCard = (props) => {
     if(props.writingId == WritingIds.SHORT_STORIES)
 		return <WritingLink
 					title="Short Stories"
-			        img={ OfficialCoverArts[WritingIds.SHORT_STORIES] }
+					img="wizard-books.jpg"
 					slug="shortstories"
 					summary={["I've written a lot of short fiction over the years. ", <ClickHere />, " if you like weird stuff that you can finish in one sitting."]}
 				/>
@@ -286,7 +285,7 @@ export let WritingLinkCard = (props) => {
     if(props.writingId == WritingIds.UNFINISHED_NOVELS)
 		return <WritingLink
 					title="Unfinished Novels"
-			        img={ OfficialCoverArts[WritingIds.UNFINISHED_NOVELS] }
+					img="ancient-books.jpg"
 					slug="unfinished-works"
 					summary={["I don't finish all the works I start...."]}
 				/>
@@ -294,7 +293,7 @@ export let WritingLinkCard = (props) => {
     if(props.writingId == WritingIds.VISUAL_ARTS)
 		return <WritingLink
 					title="Visual Arts"
-			        img={ OfficialCoverArts[WritingIds.VISUAL_ARTS] }
+					img="weird-woman.jpg"
 					slug="visual-arts"
 					summary={["I've been dabbling with digital art for a long time now -- most recently ai-generated art.  ", <ClickHere />, " if you like looking at weird stuff."]}
 				/>
@@ -302,7 +301,7 @@ export let WritingLinkCard = (props) => {
     if(props.writingId == WritingIds.PHILOSOPHY)
 		return <WritingLink
 					title="Philosophy"
-			        img={ OfficialCoverArts[WritingIds.PHILOSOPHY] }
+					img="black-and-green-typewriter.jpg"
 					slug="philosophy"
 					summary={["Many years ago, I majored in philosophy.  ", <ClickHere />, " for a wild ride."]}
 				/>
