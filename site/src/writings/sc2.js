@@ -49,7 +49,20 @@ ChartJS.register(
   };
 
 export const text =
-    [`# October 16th, 2022 - Sunday
+    [
+`# October 19th, 2022 - 
+
+As a college professor, I've often been struck by a paradox: that the more skilled a person becomes, the worse we sometimes teach.   As a coder (for over 20 years now), I've forgotten what it's like to be a beginner, and sometimes this negatively affects my ability to empathise with novice students.  
+
+This makes me feel worried because I *want* to empathise, and I think it's important for educators to cultivate empathy.  Believe it or not, this is one of the reasons I play StarCraft II.  It's a very difficult game, takes many years to master, and I find a lot of value in subjecting myself to being a beginner at something.
+
+My plan is to blog about my journey to become a better StarCraft II player and to reflect on being a novice.  Perhaps this will help other students out there.  And I know it'll help me become a better teacher.  It already has.
+
+Stay tuned for more awesome SC2 content :) 
+
+`, 
+
+`# October 16th, 2022 - Sunday
 
 Due to an injury, I've recently had to switch to playing this game lefthanded.  I've been tracking the increase in my lefthanded APM (actions per minute) over the last month or so.
 `, 
