@@ -15,6 +15,7 @@ export default function Score({ notation, id }) {
 
 	function onEvent(event) {
 		if (!event) {
+			setIsPlaying(false)
 			return;
 		}
 		event.notes.forEach((n) => {
@@ -23,10 +24,10 @@ export default function Score({ notation, id }) {
 	}
 
 	function play() {
-		if (isPlaying) { //Why??? SF
+		/*if (isPlaying) { //Why??? SF
 			document.getElementById();
-		}
-		setIsPlaying(!isPlaying);
+		}*/
+		setIsPlaying((isPlaying) => !isPlaying);
 	}
 
 	return (
@@ -42,7 +43,7 @@ export default function Score({ notation, id }) {
 					bpm={70}
 				/>
 			</div>
-			{/*<Button onClick={play}>Play</Button>*/}
+			{<Button onClick={play}>Play</Button>}
 		</>
 	);
 }
