@@ -9,12 +9,14 @@ import { text as post2022_10_15 } from "./2022/10/15/index";
 import { text as post2022_10_16 } from "./2022/10/16/index";
 import { text as post2022_10_17 } from "./2022/10/17/index";
 import { text as post2022_10_18 } from "./2022/10/18/index";
+import { text as post2022_10_21 } from "./2022/10/21/index";
 
 import { FancyReactMarkdown } from "../../components/index"
 
 
 let posts = [
   upcoming, 
+  post2022_10_21,
   post2022_10_18,
   post2022_10_17,
   post2022_10_16,

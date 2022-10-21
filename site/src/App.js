@@ -55,7 +55,16 @@ function App() {
 						<Route path="/homepage-tile-contest" exact component={
 							() => <FullDocument title="Homepage Tile Contest" text={homepageTileContestText} />} />
 						<Route path="/starcraft-ii" exact component={
-							() => <FullDocument title="StarCraft II" text={sc2Text} />} />
+							() => <FullDocument title="StarCraft II"
+								sideThings={
+									[
+										<ArtInfoComment img="protoss.jpg" text={`**Algorithm:** Stable Diffusion
+
+**Prompt:** protoss detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5`} />,
+
+									]
+								}
+								text={sc2Text} />} />
 
 						<Route path="/minecraft" exact component={
 							() => <FullDocument title="Minecraft Modding"

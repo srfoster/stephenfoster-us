@@ -38,7 +38,7 @@ export const OfficialCoverArts = {
 
   [WritingIds.STORYTREE]: "tree-with-eyes2.jpg",
   [WritingIds.MUSIC]: "cubist-violin.jpg",
-  [WritingIds.SC2]: "sc2.png",
+  [WritingIds.SC2]: "protoss.jpg",
   [WritingIds.DONT_TEACH_CODING]: "sci-fi-tablet.jpg",
   [WritingIds.TEACHING]: "socrates-kinkade.jpg",
   [WritingIds.THOUGHTSTEM]: "circuit-board.jpg",
@@ -131,7 +131,7 @@ export let WritingLinkCard = (props) => {
 					title="StarCraft II"
 			        img={ OfficialCoverArts[WritingIds.SC2] }
 					slug="starcraft-ii"
-					summary={["I play and am not very good.  ", <ClickHere />, " to learn more about my quest to master this very difficult game.", <p>(This art piece was done with style-transfer, unlike the others.)</p>]}
+					summary={["I play and am not very good.  ", <ClickHere />, " to learn more about my quest to master this very difficult game."]}
 				/>
 
     if(props.writingId == WritingIds.CODING_FOR_BABIES)

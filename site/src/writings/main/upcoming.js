@@ -5,6 +5,8 @@ import { Calendar, momentLocalizer } from 'react-big-calendar'
 import { Box, Button, Typography, Modal} from '@mui/material'
 import moment from 'moment'
 
+import { OfficialCoverArts, WritingIds, WritingLinkCard } from "../../components/WritingLinkCards"
+
 const localizer = momentLocalizer(moment)
 
 const style = {
@@ -47,6 +49,15 @@ const style = {
     );
   }
 
+let nextId = 0
+let event = (title, id, text, date) => {
+    return { id: nextId++,
+      title: <PopupEvent title={title} imgSrc={OfficialCoverArts[id]} fullText={ text } />,
+      start: date.toISOString(),
+      end:   date.toISOString()
+    } 
+}
+
 export const text =
   [
     <FancyReactMarkdown>{`
@@ -56,48 +67,17 @@ export const text =
 <Calendar
   localizer={localizer}
   views={["month"]}
-  defaultDate={ new Date(2022,9,11)} 
+  defaultDate={ new Date()} 
   events={[
-    { id: 0,
-      title: <PopupEvent title="Made Calendar" imgSrc="hacker.png" fullText="Launched the Calendar you're looking at"/>,
-      start: "2022-10-12T07:00:00.000Z",
-      end: "2022-10-12T07:00:00.000Z",
-    },
-    { id: 1,
-      title: <PopupEvent title="Refactoring" imgSrc="hacker.png" fullText="Refactored blog posts into separate files"/>,
-      start: "2022-10-13T07:00:00.000Z",
-      end: "2022-10-13T07:00:00.000Z",
-    },
-    { id: 2,
-      title: <PopupEvent title="Storytree" imgSrc="tree-with-eyes2.jpg" fullText="Factored out Storytree tile so that I can start doing more writings ABOUT my work on the Storytree"/>,
-      start: "2022-10-14T07:00:00.000Z",
-      end: "2022-10-14T07:00:00.000Z",
-    }  ,
-    { id: 3,
-      title: <PopupEvent title="Installation" imgSrc="hacker.png" fullText="Researched charting libraries in react and installed one"/>,
-      start: "2022-10-15T07:00:00.000Z",
-      end: "2022-10-15T07:00:00.000Z",
-    }  ,
-    { id: 4,
-      title: <PopupEvent title="Music" imgSrc="cubist-violin.jpg" fullText="Factored out score component and blogged breifly about ABC notation"/>,
-      start: "2022-10-16T07:00:00.000Z",
-      end: "2022-10-16T07:00:00.000Z",
-    }  ,
-    { id: 5,
-      title: <PopupEvent title="Refactoring" imgSrc="hacker.png" fullText="Do TODOs from Oct 14"/>,
-      start: "2022-10-17T07:00:00.000Z",
-      end: "2022-10-17T07:00:00.000Z",
-    }  ,
-    { id: 6,
-      title: <PopupEvent title="Refactoring" imgSrc="hacker.png" fullText="Continue TODOs from Oct 14"/>,
-      start: "2022-10-18T07:00:00.000Z",
-      end: "2022-10-18T07:00:00.000Z",
-    }  ,
-    { id: 7,
-      title: <PopupEvent title="Storytree" imgSrc="tree-with-eyes2.jpg" fullText="Post concept art?"/>,
-      start: "2022-10-21T07:00:00.000Z",
-      end: "2022-10-21T07:00:00.000Z",
-    }  ,
+    event("Made Calendar", WritingIds.WHATS_NEW, "Launched the Calendar you're looking at", new Date("October 12, 2022")),
+    event("Refactoring", WritingIds.WHATS_NEW, "Refactored blog posts into separate files", new Date("October 13, 2022")),
+    event("Tiles", WritingIds.WHATS_NEW, "Factored out Storytree tile so that I can start doing more writings ABOUT my work on the Storytree", new Date("October 14, 2022")),
+    event("Charts", WritingIds.WHATS_NEW, "Researched charting libraries in react and installed one", new Date("October 15, 2022")),
+    event("Sheet music", WritingIds.MUSIC, "Factored out score component and blogged breifly about ABC notation", new Date("October 16, 2022")),
+    event("Cleanup", WritingIds.WHATS_NEW, "Did TODOs from Oct 14", new Date("October 17, 2022")),
+    event("Cleanup", WritingIds.WHATS_NEW, "More TODOs from Oct 14", new Date("October 18, 2022")),
+    event("SC2", WritingIds.SC2, <FancyReactMarkdown>Small blog post on [sc2](/#/starcraft-ii)</FancyReactMarkdown>, new Date("October 19, 2022")),
+    event("Music", WritingIds.MUSIC, <FancyReactMarkdown>Small blog post on [music](/#/music)</FancyReactMarkdown>, new Date("October 21, 2022")),
 ]}
 startAccessor="start"
 endAccessor="end"
