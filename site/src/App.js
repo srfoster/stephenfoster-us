@@ -288,7 +288,17 @@ function App() {
 
 								title="Music" text={musicText} />} />
 						<Route path="/visual-arts" exact component={
-							() => <FullDocument title="Visual Arts" text={visualArtsText} />} />
+							() => <FullDocument title="Visual Arts"
+								sideThings={
+									[
+										<ArtInfoComment img="weird-woman.jpg" text={`**Algorithm:** Stable Diffusion
+
+
+**Prompt:** painting of a painting of a painting 8k resolution holographic astral cosmic illustration mixed media by Pablo Amaringo`} />,
+
+									]
+								}
+								text={visualArtsText} />} />
 						<Route path="/philosophy" exact component={
 							() => <FullDocument title="Philosophy" text={philosophyText} />} />
 						<Route path="/coding" exact component={

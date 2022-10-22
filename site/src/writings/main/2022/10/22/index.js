@@ -139,7 +139,7 @@ Finally got around to doing a blog post about my recent adventures in AI art.
 `}</FancyReactMarkdown>,
   <WritingLinkCard writingId={WritingIds.VISUAL_ARTS} />,
  <FancyReactMarkdown>{`
-Also, copied out the Material UI example for this cool carousel so that (after a bit of refactoring) I can present groups of images without taking up as much vertical space as in the [blog post I wrote](/#/visual-arts).
+Also, copied out the Material UI example for this cool carousel so that (after a bit of refactoring) I can present groups of images without taking up as much vertical space as in the [first visual arts blog post I wrote](/#/visual-arts).
 `}</FancyReactMarkdown>,
 <SwipeableTextMobileStepper />
   ]
