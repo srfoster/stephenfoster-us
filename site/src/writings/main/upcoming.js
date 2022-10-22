@@ -78,6 +78,7 @@ export const text =
     event("Cleanup", WritingIds.WHATS_NEW, "More TODOs from Oct 14", new Date("October 18, 2022")),
     event("SC2", WritingIds.SC2, <FancyReactMarkdown>Small blog post on [sc2](/#/starcraft-ii)</FancyReactMarkdown>, new Date("October 19, 2022")),
     event("Music", WritingIds.MUSIC, <FancyReactMarkdown>Small blog post on [music](/#/music)</FancyReactMarkdown>, new Date("October 21, 2022")),
+    event("Art Show!", WritingIds.VISUAL_ARTS, <FancyReactMarkdown>Small blog post on [ai art](/#/visual-arts)</FancyReactMarkdown>, new Date("October 22, 2022")),
 ]}
 startAccessor="start"
 endAccessor="end"
