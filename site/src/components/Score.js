@@ -19,6 +19,7 @@ export default function Score({ notation, id }) {
 			return;
 		}
 		event.notes.forEach((n) => {
+			console.log("Note:",n)
 			synth.triggerAttackRelease(n.name, n.duration);
 		});
 	}
