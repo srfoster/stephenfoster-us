@@ -55,6 +55,8 @@ export let VideoWithTranscription = ({video,transcription, hideVideo}) => {
 
   let player = createRef()
 
+  let stack = []
+
   return <Card> 
         <CardContent>
       {hideVideo && <Button onClick={() => { setPlaying((p)=>!p) }}>{playing ? "Stop" : "Play"}</Button>}
@@ -84,7 +86,18 @@ export let VideoWithTranscription = ({video,transcription, hideVideo}) => {
         onEnded={() => { }}
       />
           {transcription.results.items.map((item,i) => {
-            return <TranscriptionWord 
+            if (item.type == "begin") {
+              stack.push({ element: item.element, children: [] });
+              return <></>
+            }
+            else if (item.type == "end") {
+              let stackItem = stack.pop()
+              let El = stackItem.element
+
+              return <El>{stackItem.children}</El>
+            }
+            
+            let transcriptionWord = <TranscriptionWord 
                      item={item} 
                      seekTo={(time)=>{
                        player.seekTo(time, "seconds")
@@ -94,6 +107,13 @@ export let VideoWithTranscription = ({video,transcription, hideVideo}) => {
                      myIndex={i}
                      styleFunction={revealWords()}
 										 />
+
+            if (stack.length > 0) {
+              stack[stack.length - 1].children.push(transcriptionWord)
+              return <></>
+            } else {
+              return transcriptionWord
+            }
           })} 
         </CardContent>
       </Card>
