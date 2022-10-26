@@ -2,7 +2,7 @@ import ReactMarkdown from 'react-markdown';
 import {dark} from 'react-syntax-highlighter/dist/esm/styles/prism'
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 import Score from "./Score"
-import VideoWithTranscription from "./VideoWithTranscription.js"
+import { VideoWithTranscription } from "./VideoWithTranscription.js"
 
 let FancyReactMarkdown = (props) =>
   <ReactMarkdown //TODO: Factor this (and the ReactMarkdown on the homepage) into a single shared util file...

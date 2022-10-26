@@ -1,26 +1,41 @@
 
 import { useState, useEffect, useMemo, createRef } from "react";
 import { Card, CardContent, Grid, Button } from '@mui/material';
+import { Fade } from '@mui/material';
 import ReactPlayer from 'react-player/lazy';
 
-let basicStyle = (currentlyPlayingIndex, myIndex) => {
-  return {
-		 //Uncomment for a good time.
-		 //fontSize: (item.end_time - item.start_time)*50,
-		 cursor: "pointer",
-		 color: currentlyPlayingIndex == myIndex ? "red" : "white"
+export let basicStyle = ({activeColor, inactiveColor}) => {
+	return (currentlyPlayingIndex, myIndex) => {
+		return {
+			//Uncomment for a good time.
+			//fontSize: (item.end_time - item.start_time)*50,
+      cursor: "pointer",
+			color: currentlyPlayingIndex == myIndex ? activeColor : inactiveColor
+		}
 	}
 }
 
-let basicStyle2 = (currentlyPlayingIndex, myIndex) => {
-  return {
-		 cursor: "pointer",
-		 //color: currentlyPlayingIndex < myIndex ? "white" : "white",
-		 opacity: currentlyPlayingIndex < myIndex ? 0.1 : 1
+export let revealWords = () => {
+	return (currentlyPlayingIndex, myIndex) => {
+		return {
+      cursor: "pointer",
+			opacity: currentlyPlayingIndex < myIndex ? 0.1 : 1,
+			//display: currentlyPlayingIndex < myIndex ? "none" : "inline",
+		}
 	}
 }
 
-let TranscriptionWord = ({item, seekTo, current, setCurrent, myIndex, styleFunction}) => { 
+export let ContentWrapper = ({children, active}) => {
+   //Fade Not working 
+   //return <Fade in={true}>Hi </Fade>
+
+   //Idea for additional content transformations...
+   //return <>{active ? "[" : ""}{children}{active ? "]" : ""}</>
+
+   return <>{children}</>
+}
+
+export let TranscriptionWord = ({item, seekTo, current, setCurrent, myIndex, styleFunction}) => { 
   let content = item.alternatives[0].content
 	return <span
 						onClick={() => {
@@ -29,11 +44,12 @@ let TranscriptionWord = ({item, seekTo, current, setCurrent, myIndex, styleFunct
 						}}
 					  style={styleFunction(current,myIndex)}
 					  key={myIndex}>
-             {(content.match && content.match(/^[^\w]$/)) ? "" : " "}{!content.highlighted ? content : (current == myIndex ? content.highlighted : content.normal)}</span>    
-}
+             {(content.match && content.match(/^[^\w]$/)) ? "" : " "}
+             <ContentWrapper active={current == myIndex}>{!content.highlighted ? content : (current == myIndex ? content.highlighted : content.normal)}</ContentWrapper>
+   </span>    
+} 
 
-
-let VideoWithTranscription = ({video,transcription, hideVideo}) => {
+export let VideoWithTranscription = ({video,transcription, hideVideo}) => {
   let [current, setCurrent] = useState(0)
   let [playing, setPlaying] = useState(false)
 
@@ -76,11 +92,10 @@ let VideoWithTranscription = ({video,transcription, hideVideo}) => {
                      current={current}
                      setCurrent={setCurrent}
                      myIndex={i}
-                     styleFunction={basicStyle2}
+                     styleFunction={revealWords()}
 										 />
           })} 
         </CardContent>
       </Card>
 }
 
-export default VideoWithTranscription 
