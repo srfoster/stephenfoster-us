@@ -1,5 +1,5 @@
 
-import { FancyReactMarkdown, VideoWithTranscription } from "../../../../../components/index"
+import { FancyReactMarkdown, VideoWithTranscription } from "../../../../../components/index.js"
 
 export const text =
 [
