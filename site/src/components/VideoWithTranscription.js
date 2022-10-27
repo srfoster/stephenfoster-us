@@ -55,7 +55,55 @@ export let VideoWithTranscription = ({video,transcription, hideVideo}) => {
 
   let player = createRef()
 
-  let stack = []
+  let i = 0
+  let itemToTranscriptionWord = (item) => {
+            if(item.type == "container"){
+              return {type: "container", 
+                      element: item.element, 
+                      children: item.children.map(itemToTranscriptionWord) }
+            } else {
+          
+              let transcriptionWord = <TranscriptionWord 
+                     item={item} 
+                     seekTo={(time)=>{
+                       player.seekTo(time, "seconds")
+                     }} 
+                     current={current}
+                     setCurrent={setCurrent}
+                     myIndex={i}
+                     styleFunction={revealWords()}
+										 />
+              i++
+
+              return transcriptionWord
+            }
+          }
+
+  let combine = (item) => {
+		if(item.type == "container"){
+			let El = item.element
+      return <El children={item.children.map(combine)}/> 
+		} else {
+      return item 
+    }
+  }
+
+
+  let items = transcription.results.items.map(itemToTranscriptionWord)
+  let combinedItems = items.map(combine)
+
+  let flattenedItems = []
+  let flatten = (item)=>{
+		if(item.type == "container"){
+      item.children.map(flatten)
+		} else {
+      flattenedItems.push(item)
+    }
+  }
+
+  transcription.results.items.map(flatten)
+
+  console.log(flattenedItems)
 
   return <Card> 
         <CardContent>
@@ -75,8 +123,10 @@ export let VideoWithTranscription = ({video,transcription, hideVideo}) => {
 
           //Simple but super in-efficient, will not work for long transcriptions...
           //TODO: Rework this
-          for (let i in transcription.results.items) {
-            let item = transcription.results.items[i]
+          for (let i in flattenedItems) {
+            let item = flattenedItems[i]
+            if(item.type != "pronunciation") continue;
+
             let end = item.end_time
             let start = item.start_time
             if (p.playedSeconds > start && p.playedSeconds <= end)
@@ -85,36 +135,7 @@ export let VideoWithTranscription = ({video,transcription, hideVideo}) => {
         }}
         onEnded={() => { }}
       />
-          {transcription.results.items.map((item,i) => {
-            if (item.type == "begin") {
-              stack.push({ element: item.element, children: [] });
-              return <></>
-            }
-            else if (item.type == "end") {
-              let stackItem = stack.pop()
-              let El = stackItem.element
-
-              return <El>{stackItem.children}</El>
-            }
-            
-            let transcriptionWord = <TranscriptionWord 
-                     item={item} 
-                     seekTo={(time)=>{
-                       player.seekTo(time, "seconds")
-                     }} 
-                     current={current}
-                     setCurrent={setCurrent}
-                     myIndex={i}
-                     styleFunction={revealWords()}
-										 />
-
-            if (stack.length > 0) {
-              stack[stack.length - 1].children.push(transcriptionWord)
-              return <></>
-            } else {
-              return transcriptionWord
-            }
-          })} 
+          {combinedItems} 
         </CardContent>
       </Card>
 }

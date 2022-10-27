@@ -28,7 +28,9 @@ Here are a few different text effects I'm playing with (hiding the video because
                                                 "content": "Testing"
                                         }],
                                         "type": "pronunciation"
-                                }, {type: "begin", element: Card},
+                                }, {type: "container", 
+                                    element: Card,
+                                    children: [
                                         {
                                         "start_time": "1.13",
                                         "end_time": "1.53",
@@ -38,8 +40,9 @@ Here are a few different text effects I'm playing with (hiding the video because
                                         }],
                                         "type": "pronunciation"
                                         },
-                                        { type: "begin", element: Card },
-                                        {
+                                        {type: "container",
+                                         element: Card,
+                                         children: [{
                                         "start_time": "1.54",
                                         "end_time": "1.9",
                                         "alternatives": [{
@@ -47,8 +50,7 @@ Here are a few different text effects I'm playing with (hiding the video because
                                                 "content": "2"
                                         }],
                                         "type": "pronunciation"
-                                        },
-                                        { type: "end" },
+                                        }]},
                                         {
                                         "start_time": "1.91",
                                         "end_time": "2.45",
@@ -58,13 +60,14 @@ Here are a few different text effects I'm playing with (hiding the video because
                                         }],
                                         "type": "pronunciation"
                                         },
-                                        { type: "end" },
-                                        {
-                                        "alternatives": [{
-                                                "confidence": "0.0",
-                                                "content": "."
-                                        }],
-                                        "type": "punctuation"
+																	   ]
+																	},
+																	{
+																	"alternatives": [{
+																					"confidence": "0.0",
+																					"content": "."
+																	}],
+																	"type": "punctuation"
                                 }]
                         },
                         "status": "COMPLETED"
