@@ -199,7 +199,6 @@ export let WritingLinkCard = (props) => {
 			        img={ OfficialCoverArts[WritingIds.CODING] }
 					slug="coding"
 					backgroundPosition="center bottom"
-					backgroundSize="auto"
 					summary={["I've been coding for a long time.  ", <ClickHere />, " if you like coding."]}
 				/>
 

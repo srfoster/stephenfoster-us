@@ -4,6 +4,66 @@ import { Card, CardContent, Grid, Button } from '@mui/material';
 import { Fade } from '@mui/material';
 import ReactPlayer from 'react-player/lazy';
 
+//For demos and testing
+
+export const testTranscription = {
+  file: "/short-videos/testing-one-two-three.mp4",
+  json: {
+    "jobName": "Testing123",
+    "accountId": "815546122970",
+    "results": {
+      "transcripts": [{
+        "transcript": "Testing 1 2 3."
+      }],
+      "items": [{
+        "start_time": "0.0",
+        "end_time": "1.12",
+        "alternatives": [{
+          "confidence": "1.0",
+          "content": "Testing"
+        }],
+        "type": "pronunciation"
+      },
+      {
+        "start_time": "1.13",
+        "end_time": "1.53",
+        "alternatives": [{
+          "confidence": "1.0",
+          "content": "1"
+        }],
+        "type": "pronunciation"
+      },
+      {
+        "start_time": "1.54",
+        "end_time": "1.9",
+        "alternatives": [{
+          "confidence": "0.9968",
+          "content": "2"
+        }],
+        "type": "pronunciation"
+      },
+      {
+        "start_time": "1.91",
+        "end_time": "2.45",
+        "alternatives": [{
+          "confidence": "1.0",
+          "content": "3"
+        }],
+        "type": "pronunciation"
+      },
+      {
+        "alternatives": [{
+          "confidence": "0.0",
+          "content": "."
+        }],
+        "type": "punctuation"
+      }
+      ]
+    },
+    "status": "COMPLETED"
+  }
+}
+
 export let basicStyle = ({activeColor, inactiveColor}) => {
 	return (currentlyPlayingIndex, myIndex) => {
 		return {
@@ -49,7 +109,7 @@ export let TranscriptionWord = ({item, seekTo, current, setCurrent, myIndex, sty
    </span>    
 } 
 
-export let VideoWithTranscription = ({video,transcription, hideVideo}) => {
+export let VideoWithTranscription = ({video,transcription, hideVideo, styleFunction}) => {
   let [current, setCurrent] = useState(0)
   let [playing, setPlaying] = useState(false)
 
@@ -71,7 +131,7 @@ export let VideoWithTranscription = ({video,transcription, hideVideo}) => {
                      current={current}
                      setCurrent={setCurrent}
                      myIndex={i}
-                     styleFunction={revealWords()}
+                     styleFunction={styleFunction || revealWords()}
 										 />
               i++
 
@@ -102,8 +162,6 @@ export let VideoWithTranscription = ({video,transcription, hideVideo}) => {
   }
 
   transcription.results.items.map(flatten)
-
-  console.log(flattenedItems)
 
   return <Card> 
         <CardContent>

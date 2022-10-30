@@ -27,13 +27,14 @@ import { text as philosophyText } from './writings/philosophy';
 import { text as codingText } from './writings/coding';
 import { text as homepageTileContestText } from './writings/homepage-tile-contest';
 import { text as sc2Text } from './writings/sc2';
+import { text as shortstoriesText } from './writings/shortstories';
 
 import ReactMarkdown from 'react-markdown';
 
 import ReactPlayer from 'react-player/lazy';
 
 import { WritingIds, WritingLinkCard, WritingLink, ClickHere } from "./components/WritingLinkCards"
-import { FancyReactMarkdown } from "./components/index"
+import { FancyReactMarkdown, GridItem } from "./components/index"
 
 function App() {
 
@@ -79,21 +80,7 @@ function App() {
 								text={minecraftText} />} />
 
 						<Route path="/shortstories" exact component={
-							() => <FullDocument title="Short Fiction" text={
-								[
-									<Grid>
-										<GridItem>
-											<WritingLinkCard writingId={WritingIds.CODING_FOR_BABIES} />
-										</GridItem>
-										<GridItem>
-											<WritingLinkCard writingId={WritingIds.POLITE_BARBARIANS} />
-										</GridItem>
-										<GridItem>
-											<WritingLinkCard writingId={WritingIds.JONNY_VAMPIRE} />
-										</GridItem>
-									</Grid>
-								]
-							} />} />
+							() => <FullDocument title="Short Fiction" text={ shortstoriesText } />} />
 
 						<Route path="/unfinished-works" exact component={
 							() => <FullDocument title="Unfinished Works" text={"The Gatherers.  Schools of Mind."} />} />
@@ -408,14 +395,6 @@ function Root() {
 		<br />
 		<br />
 	</>
-}
-
-
-
-const GridItem = (props) => {
-	return <Grid item xl={3} lg={4} md={6} xs={6}>
-		{props.children}
-	</Grid>
 }
 
 const Writings = () => {
