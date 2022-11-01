@@ -12,10 +12,14 @@ import { text as post2022_10_18 } from "./2022/10/18/index";
 import { text as post2022_10_21 } from "./2022/10/21/index";
 import { text as post2022_10_22 } from "./2022/10/22/index";
 import { text as post2022_10_29 } from "./2022/10/29/index";
+import { text as post2022_10_30 } from "./2022/10/30/index";
+import { text as post2022_10_31 } from "./2022/10/31/index";
 
 
 let posts = [
   upcoming, 
+  post2022_10_31,
+  post2022_10_30,
   post2022_10_29,
   post2022_10_22,
   post2022_10_21,

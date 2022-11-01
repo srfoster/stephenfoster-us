@@ -79,7 +79,15 @@ export const text =
     event("SC2", WritingIds.SC2, <FancyReactMarkdown>Small blog post on [sc2](/#/starcraft-ii)</FancyReactMarkdown>, new Date("October 19, 2022")),
     event("Music", WritingIds.MUSIC, <FancyReactMarkdown>Small blog post on [music](/#/music)</FancyReactMarkdown>, new Date("October 21, 2022")),
     event("Art Show!", WritingIds.VISUAL_ARTS, <FancyReactMarkdown>Small blog post on [ai art](/#/visual-arts)</FancyReactMarkdown>, new Date("October 22, 2022")),
-    event("Animated Transcriptions", WritingIds.CODING, <FancyReactMarkdown>Designing components for animated transcripts ([coding](/#/coding))</FancyReactMarkdown>, new Date("October 29, 2022")),
+
+    event("React", WritingIds.CODING, <FancyReactMarkdown>Designing components for animated transcripts ([coding](/#/coding))</FancyReactMarkdown>, new Date("October 23, 2022")),
+    event("React", WritingIds.CODING, <FancyReactMarkdown>Designing components for animated transcripts ([coding](/#/coding))</FancyReactMarkdown>, new Date("October 24, 2022")),
+    event("React", WritingIds.CODING, <FancyReactMarkdown>Designing components for animated transcripts ([coding](/#/coding))</FancyReactMarkdown>, new Date("October 25, 2022")),
+    event("React", WritingIds.CODING, <FancyReactMarkdown>Designing components for animated transcripts ([coding](/#/coding))</FancyReactMarkdown>, new Date("October 26, 2022")),
+
+    event("React", WritingIds.CODING, <FancyReactMarkdown>Designing components for animated transcripts ([coding](/#/coding))</FancyReactMarkdown>, new Date("October 29, 2022")),
+    event("Story", WritingIds.SHORT_STORIES, <FancyReactMarkdown>Starting to release an [illustrated audio story](/#/shortstories)</FancyReactMarkdown>, new Date("October 30, 2022")),
+    event("Story", WritingIds.SHORT_STORIES, <FancyReactMarkdown>Starting to release an [illustrated audio story](/#/shortstories)</FancyReactMarkdown>, new Date("October 31, 2022")),
 ]}
 startAccessor="start"
 endAccessor="end"

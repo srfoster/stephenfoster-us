@@ -1,9 +1,11 @@
+import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import {dark} from 'react-syntax-highlighter/dist/esm/styles/prism'
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 import Score from "./Score"
 import { VideoWithTranscription } from "./VideoWithTranscription.js"
 import { Grid } from '@mui/material';
+
 
 let FancyReactMarkdown = (props) =>
   <ReactMarkdown //TODO: Factor this (and the ReactMarkdown on the homepage) into a single shared util file...
@@ -33,4 +35,18 @@ const GridItem = (props) => {
 	</Grid>
 }
 
-export { FancyReactMarkdown, Score, VideoWithTranscription, GridItem }
+const FetchThen = ({ from, then }) => {
+  let [data, setData] = useState(undefined)
+
+  useEffect(()=>{
+    fetch(from).then((r)=>r.json()).then((r)=>setData(r))
+  }, [])
+
+  if (data) {
+    return then(data)
+  } else {
+    return "Fetching data..."
+  }
+}
+
+export { FancyReactMarkdown, Score, VideoWithTranscription, GridItem, FetchThen }

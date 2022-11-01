@@ -30,7 +30,7 @@ Piggybacking on my recent work with animated transcriptions, I've decided to tak
       }
     />,
 
- <FancyReactMarkdown>{`# Older Stuf
+ <FancyReactMarkdown>{`# Older Stuff
   
 Once upon a time, I was working on typesetting and releasing a bunch of short fiction I wrote between the years 2003 and 2020.  I haven't gotten that far, but these card links will (hopefully) remind me to continue work on that project when I have the time:
 
