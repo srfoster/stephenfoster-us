@@ -11,8 +11,51 @@ function removePunctuation(transcriptionData) {
   return copy
 }
 
+//Only works after the words match up (validatePairs needs to have been called)
+function addBackWordPunctuation(originalText, transcriptionData) {
+  let originalWords = originalText.replace(/[\*]/g,"").replace(/\s{2,}/g," ").split(" ")
+  let itemsWithFixedPunctuation =  transcriptionData.results.items.map((i,index)=>{
+    i.alternatives[0].content = originalWords[index]
+    return i
+  })
+
+  let copy = {...transcriptionData}
+
+  copy.results.items = itemsWithFixedPunctuation
+
+  return copy
+}
+
+function addBackParaBreaks(originalText, transcriptionData) {
+  let copy = {...transcriptionData}
+  let originalWords = originalText.replace(/[\*]/g,"").replace(/\s{2,}/g," ").split(" ")
+
+  let regex = new RegExp(/\n\n/)
+  let indexes = indexesOf(originalText,regex)
+  let accum = 0 
+
+  for(let index of indexes){
+		copy.results.items.splice(index.words + accum - 1, 0, {type: "punctuation", alternatives: [{content: "\n\n"}]})
+ 
+    accum += index.words
+  } 
+
+  return copy
+}
+
+function indexesOf(string, regex) {
+    let a = string.split(regex)
+
+    return a.map((part)=>{return {chars: part.length, words: part.split(" ").length}})
+}
+
+
 function itemContentsArray(transcriptionData) {
   return transcriptionData.results.items.map((i)=>i.alternatives[0].content)
+}
+
+function textOnly(transcriptionData) {
+  return itemContentsArray(transcriptionData).join(" ")
 }
 
 function pairWithOriginal(originalText, transcriptionData) {
@@ -40,6 +83,7 @@ function fixTranscription( originalText, transcriptionData) {
   let noPunctuation = removePunctuation(transcriptionData)
   let noPunctuationWithPairs = pairWithOriginal(originalText, noPunctuation) 
 
+  //Throws errors until everything is fixed
   validatePairs(noPunctuationWithPairs)
 
   return noPunctuation //transcriptionData 
@@ -49,24 +93,20 @@ let originalText =
 `As the sun rose that day, the child looked up at the oncoming darkness and knew the truth.  A hero would need to go on a quest soon.
 
 ***
-As the sun rose, the farmer looked up at the oncoming darkness above his fields and knew the truth.  A hero 
-would need to go on a quest.  Today.  And not a day later. 
+
+As the sun rose, the farmer looked up at the oncoming darkness above his fields and knew the truth.  A hero would need to go on a quest.  Today.  And not a day later. 
 
 ***
 
-As the sun rose, a wizard looked through his tower at the oncoming darkness and knew the truth.  A hero 
-would need to go on a quest.  And if they failed, it would mean doom for all.
+As the sun rose, a wizard looked through his tower at the oncoming darkness and knew the truth.  A hero would need to go on a quest.  And if they failed, it would mean doom for all.
 
 ***
 
-As the sun rose, the prophet in her lonesome cave in the tallest mountain faced the cold winds from the 
-oncoming darkness and knew the truth she had always known.  Someone would need to go on a quest.  
-And whether they would succeed, she could not foresee.
+As the sun rose, the prophet in her lonesome cave in the tallest mountain faced the cold winds from the oncoming darkness and knew the truth she had always known.  Someone would need to go on a quest.  And whether they would succeed, she could not foresee.
 
 ***
 
-A few hours after sunrise, the King rose to the sounds of calamity and ran to his window.  When he saw the oncoming 
-darkness and the protesters with their signs, he knew the truth.  He would need to find someone to go on a quest.  And it wouldn't do to wait.
+A few hours after sunrise, the King rose to the sounds of calamity and ran to his window.  When he saw the oncoming darkness and the protesters with their signs, he knew the truth.  He would need to find someone to go on a quest.  And it wouldn't do to wait.
 
 ***
 
@@ -88,13 +128,26 @@ The committee wrote all of this down and gave a message to their fastest rider, 
 
 export const text =
 [
- <FancyReactMarkdown>{`# October 31st, 2022 - Monday
+ <FancyReactMarkdown>{`# November 1st, 2022 - Tuesday
+
+
+
+`}</FancyReactMarkdown>,
+
+    <FetchThen
+      from="/short-videos/shortstories/never-ends/e1.json"
+      then={(data) => { 
+        console.log(addBackParaBreaks(originalText, addBackWordPunctuation(originalText, data)))
+        return <FancyReactMarkdown>{textOnly(addBackParaBreaks(originalText, addBackWordPunctuation(originalText, data)))}</FancyReactMarkdown>
+      }} />
+
+ ,<FancyReactMarkdown>{`# October 31st, 2022 - Monday
 
 Yesterday's blog post revealed what everyone already knows: Automated transcription makes a lot of mistakes.
 I *could* fix it all by hand, but why?  I have the original text.  Shouldn't I be able to fix it automatically
 (or at least semi-automatically)?
 
-Here are a few problems, I've already seen: 
+Here are a few problems I've already seen: 
 
 * Words in the transcription that aren't in the original text (for example, if I add an "And" at the beginning of a sentence)
 * Words in the original text that aren't in the transcription (for example, if I drop an "And" at the beginning of a sentence)
