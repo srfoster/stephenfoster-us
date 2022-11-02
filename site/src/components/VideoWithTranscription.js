@@ -3,6 +3,7 @@ import { useState, useEffect, useMemo, createRef } from "react";
 import { Card, CardContent, Grid, Button } from '@mui/material';
 import { Fade } from '@mui/material';
 import ReactPlayer from 'react-player/lazy';
+import { extractTimings } from '../libs/transcriptions';
 
 //For demos and testing
 
@@ -96,7 +97,9 @@ export let ContentWrapper = ({children, active}) => {
 }
 
 export let TranscriptionWord = ({item, seekTo, current, setCurrent, myIndex, styleFunction}) => { 
-  let content = item.alternatives[0].content
+  let content = item.content
+  if(!content) return null
+
 	return <span
 						onClick={() => {
 							  seekTo(item.start_time)
@@ -148,12 +151,14 @@ export let VideoWithTranscription = ({video,transcription, hideVideo, styleFunct
     }
   }
 
+  let timings = transcription.results ? extractTimings(transcription) : transcription
 
-  let items = transcription.results.items.map(itemToTranscriptionWord)
+  let items = timings.map(itemToTranscriptionWord)
   let combinedItems = items.map(combine)
 
   let flattenedItems = []
   let flatten = (item)=>{
+
 		if(item.type == "container"){
       item.children.map(flatten)
 		} else {
@@ -161,7 +166,7 @@ export let VideoWithTranscription = ({video,transcription, hideVideo, styleFunct
     }
   }
 
-  transcription.results.items.map(flatten)
+  timings.map(flatten)
 
   return <Card> 
         <CardContent>
