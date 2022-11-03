@@ -1,4 +1,11 @@
 
+//Mostly, we want to deal with Array<Timing> data structures
+
+//Timings are like {content: "foo", type: TimingType, start_time: Time, end_time: time}
+//TimingTypes are "pronunciation", "punctuation", and "container"
+//Timings with type "container" will also have an element: and a children: field
+
+//AWS transcription -> Array<Timing>
 export function extractTimings(transcriptionData) {
   let items = transcriptionData.results ? transcriptionData.results.items : transcriptionData
 
@@ -16,42 +23,86 @@ export function extractTimings(transcriptionData) {
   return items
 }
 
-export function removePunctuation(transcriptionData) {
-  let itemsWithoutPunctuations =  transcriptionData.results.items.filter((i)=>i.type != "punctuation")
-
-  let copy = {...transcriptionData}
-
-  copy.results.items = itemsWithoutPunctuations
-
-  return copy
+//Not exactly efficient, but lets us assume that our functions are pure, which is nice
+//Array<Timing> -> Array<Timing>
+function deepCopy(timings) {
+  return [...timings].map((t) => {
+    return {...t}
+  })
 }
 
-export function wrapAll(transcriptionData, wrapper) {
-  let items =  transcriptionData.results.items
+export function removePunctuation(timings) {
+  let copy = deepCopy(timings)
 
-  let copy = {...transcriptionData}
+  return copy.filter((t)=>t.type != "punctuation")
+}
 
-  for(let item of copy.results.items){
-    let content = item.alternatives[0].content
-    item.alternatives[0].content = wrapper(content)
+export function wrapAll(timings, wrapper) {
+  let copy = deepCopy(timings)
+
+  for(let item of copy){
+    let content = item.content
+    item.content = wrapper(content)
   }
 
   return copy
 }
 
 //Only works after the words match up (validatePairs needs to have been called)
-export function addBackWordPunctuation(originalText, transcriptionData) {
+function addBackWordPunctuation(originalText, timings) {
   let originalWords = originalText.replace(/[\*]/g,"").replace(/\s{2,}/g," ").split(" ")
-  let itemsWithFixedPunctuation =  transcriptionData.results.items.map((i,index)=>{
-    i.alternatives[0].content = originalWords[index]
+
+  let timingsWithFixedPunctuation =  deepCopy(timings).map((i,index)=>{
+    i.content = originalWords[index]
     return i
   })
 
-  let copy = {...transcriptionData}
+  return timingsWithFixedPunctuation 
+}
 
-  copy.results.items = itemsWithFixedPunctuation
+export function fixWordPunctuation(originalText, timings) {
+  return addBackWordPunctuation(originalText, removePunctuation(extractTimings(timings))) 
+}
 
-  return copy
+function findIndex(words, timings, end) {
+  let index = 0
+  let wordsFound = 0
+  let wordsArray = words.split(" ")
+
+  for (let t of timings) {
+    if (t.content == wordsArray[wordsFound]) {
+      wordsFound++
+      
+      if (wordsFound == wordsArray.length)
+        return end ? (index + 1) : (index - wordsFound + 1)
+    } else {
+      wordsFound = 0
+    }
+    index++
+  }
+
+  throw("Anchor not found: " + words)
+}
+
+function findEndIndex(words, timings) {
+  return findIndex(words, timings, true)
+}
+
+function findStartIndex(words, timings) {
+  return findIndex(words, timings, false)
+}
+
+export function wrap(fromTo, timings) {
+  timings = deepCopy(timings) 
+
+  let from = findStartIndex(fromTo.from, timings)
+  let to   = findEndIndex(fromTo.to, timings)
+
+  let container = {type:"container", element: fromTo.element, children: timings.slice(from, to) }
+  
+  timings = timings.slice(0,from).concat([container]).concat(timings.slice(to))
+
+  return timings
 }
 
 export function addBackParaBreaks(originalText, transcriptionData) {
@@ -116,3 +167,20 @@ export function fixTranscription( originalText, transcriptionData) {
 
   return noPunctuation //transcriptionData 
 }
+
+/*
+function test() {
+  let orig = [
+    { "start_time": "0.19", "end_time": "0.45", "type": "pronunciation", "content": "As" }, { "start_time": "0.45", "end_time": "0.55", "type": "pronunciation", "content": "the" }, { "start_time": "0.55", "end_time": "0.9", "type": "pronunciation", "content": "sun" },
+    { "start_time": "0.9", "end_time": "1.31", "type": "pronunciation", "content": "rose" }, { "start_time": "1.31", "end_time": "1.52", "type": "pronunciation", "content": "that" }, { "start_time": "1.53", "end_time": "2.09", "type": "pronunciation", "content": "day," },
+    , { "start_time": "2.1", "end_time": "2.24", "type": "pronunciation", "content": "the" }, { "start_time": "2.24", "end_time": "2.7", "type": "pronunciation", "content": "child" }, { "start_time": "2.7", "end_time": "2.94", "type": "pronunciation", "content": "looked" }, { "start_time": "2.94", "end_time": "3.12", "type": "pronunciation", "content": "up" }]
+
+  //wrap({from: "As", ""})
+
+  let result = [
+    { type: "container", element: (props) => <div style={{ color: "red" }}>{props.children}</div>, children: [{ "start_time": "0.19", "end_time": "0.45", "type": "pronunciation", "content": "As" }, { "start_time": "0.45", "end_time": "0.55", "type": "pronunciation", "content": "the" }, { "start_time": "0.55", "end_time": "0.9", "type": "pronunciation", "content": "sun" }] },
+    { type: "container", element: (props) => <div style={{ color: "orange" }}>{props.children}</div>, children: [{ "start_time": "0.9", "end_time": "1.31", "type": "pronunciation", "content": "rose" }, { "start_time": "1.31", "end_time": "1.52", "type": "pronunciation", "content": "that" }, { "start_time": "1.53", "end_time": "2.09", "type": "pronunciation", "content": "day," }] }
+    , { "start_time": "2.1", "end_time": "2.24", "type": "pronunciation", "content": "the" }, { "start_time": "2.24", "end_time": "2.7", "type": "pronunciation", "content": "child" }, { "start_time": "2.7", "end_time": "2.94", "type": "pronunciation", "content": "looked" }, { "start_time": "2.94", "end_time": "3.12", "type": "pronunciation", "content": "up" }]
+
+}
+*/
