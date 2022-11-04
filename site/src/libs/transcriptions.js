@@ -49,10 +49,13 @@ export function wrapAll(timings, wrapper) {
 }
 
 //Only works after the words match up (validatePairs needs to have been called)
-function addBackWordPunctuation(originalText, timings) {
-  let originalWords = originalText.replace(/[\*]/g,"").replace(/\s{2,}/g," ").split(" ")
+export function addBackWordPunctuation(originalText, timings) {
+  let originalWords = originalText.replace(/[\*]/g,"").replace(" -- ", " ").replace(/\s{2,}/g," ").split(" ")
+
+  let dc = deepCopy(timings)
 
   let timingsWithFixedPunctuation =  deepCopy(timings).map((i,index)=>{
+    console.log("orig word:",i.content, originalWords[index])
     i.content = originalWords[index]
     return i
   })
@@ -81,6 +84,8 @@ function findIndex(words, timings, end) {
     index++
   }
 
+  console.log(timings)
+
   throw("Anchor not found: " + words)
 }
 
@@ -101,6 +106,8 @@ export function wraps(fromTos, timings) {
 export function wrap(fromTo, timings) {
   timings = deepCopy(timings) 
 
+  console.log("Last",timings[timings.length - 1])
+
   let from = findStartIndex(fromTo.from, timings)
   let to   = findEndIndex(fromTo.to, timings)
 
@@ -111,21 +118,24 @@ export function wrap(fromTo, timings) {
   return timings
 }
 
-export function addBackParaBreaks(originalText, transcriptionData) {
-  let copy = {...transcriptionData}
-  let originalWords = originalText.replace(/[\*]/g,"").replace(/\s{2,}/g," ").split(" ")
+export function getParaFromTos(originalText) {
+  function firstWords(n, p) {
+    return p.split(" ").slice(0, n).join(" ")
+  }
 
-  let regex = new RegExp(/\n\n/)
-  let indexes = indexesOf(originalText,regex)
-  let accum = 0 
+  function lastWords(n, p) {
+    let a = p.split(" ")
+      
+    return a.slice(a.length - n - 1).join(" ")
+  }
 
-  for(let index of indexes){
-		copy.results.items.splice(index.words + accum - 1, 0, {type: "punctuation", alternatives: [{content: "\n\n"}]})
- 
-    accum += index.words
-  } 
-
-  return copy
+  return originalText.replace(/\n\n\*\*\*\n\n/g, "\n\n").split("\n\n").map((p) => {
+    return {
+      from: firstWords(3, p),
+      to: lastWords(3, p),
+      element: (props) => <p {...props} />
+    }
+  })
 }
 
 export function indexesOf(string, regex) {
@@ -173,20 +183,3 @@ export function fixTranscription( originalText, transcriptionData) {
 
   return noPunctuation //transcriptionData 
 }
-
-/*
-function test() {
-  let orig = [
-    { "start_time": "0.19", "end_time": "0.45", "type": "pronunciation", "content": "As" }, { "start_time": "0.45", "end_time": "0.55", "type": "pronunciation", "content": "the" }, { "start_time": "0.55", "end_time": "0.9", "type": "pronunciation", "content": "sun" },
-    { "start_time": "0.9", "end_time": "1.31", "type": "pronunciation", "content": "rose" }, { "start_time": "1.31", "end_time": "1.52", "type": "pronunciation", "content": "that" }, { "start_time": "1.53", "end_time": "2.09", "type": "pronunciation", "content": "day," },
-    , { "start_time": "2.1", "end_time": "2.24", "type": "pronunciation", "content": "the" }, { "start_time": "2.24", "end_time": "2.7", "type": "pronunciation", "content": "child" }, { "start_time": "2.7", "end_time": "2.94", "type": "pronunciation", "content": "looked" }, { "start_time": "2.94", "end_time": "3.12", "type": "pronunciation", "content": "up" }]
-
-  //wrap({from: "As", ""})
-
-  let result = [
-    { type: "container", element: (props) => <div style={{ color: "red" }}>{props.children}</div>, children: [{ "start_time": "0.19", "end_time": "0.45", "type": "pronunciation", "content": "As" }, { "start_time": "0.45", "end_time": "0.55", "type": "pronunciation", "content": "the" }, { "start_time": "0.55", "end_time": "0.9", "type": "pronunciation", "content": "sun" }] },
-    { type: "container", element: (props) => <div style={{ color: "orange" }}>{props.children}</div>, children: [{ "start_time": "0.9", "end_time": "1.31", "type": "pronunciation", "content": "rose" }, { "start_time": "1.31", "end_time": "1.52", "type": "pronunciation", "content": "that" }, { "start_time": "1.53", "end_time": "2.09", "type": "pronunciation", "content": "day," }] }
-    , { "start_time": "2.1", "end_time": "2.24", "type": "pronunciation", "content": "the" }, { "start_time": "2.24", "end_time": "2.7", "type": "pronunciation", "content": "child" }, { "start_time": "2.7", "end_time": "2.94", "type": "pronunciation", "content": "looked" }, { "start_time": "2.94", "end_time": "3.12", "type": "pronunciation", "content": "up" }]
-
-}
-*/
