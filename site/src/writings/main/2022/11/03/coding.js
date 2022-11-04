@@ -31,10 +31,9 @@ All in all, I'm close to being able to embed ai-generated art as illustrations..
                         from="/short-videos/shortstories/never-ends/e1.json"
                         then={(data) => { 
                                 let doubleWrap =
-                                        wrap(
-                                                { from: "As the sun rose,", to: "not a day later.", element: (props) => { return <div style={{ color: "orange" }}>{props.children}</div> } },
+                                        wrap({ from: "As the sun rose,", to: "not a day later.", element: (props) => { return <div style={{ color: "orange" }}>{props.children}</div> } },
                                                 wrap({ from: "As the sun rose", to: "quest soon.", element: (props) => { return <div style={{ color: "red" }}>{props.children}</div> } },
-                                                        fixWordPunctuation(part1, data)))
+                                                fixWordPunctuation(part1, data)))
 
                                 console.log("doubleWrap", doubleWrap[0])
 

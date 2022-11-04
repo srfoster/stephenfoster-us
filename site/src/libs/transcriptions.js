@@ -92,6 +92,12 @@ function findStartIndex(words, timings) {
   return findIndex(words, timings, false)
 }
 
+export function wraps(fromTos, timings) {
+  if (fromTos.length == 0) return timings
+  
+  return wraps(fromTos.slice(1), wrap(fromTos[0], timings))
+}
+
 export function wrap(fromTo, timings) {
   timings = deepCopy(timings) 
 

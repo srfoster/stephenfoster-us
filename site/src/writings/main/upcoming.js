@@ -88,6 +88,9 @@ export const text =
     event("React", WritingIds.CODING, <FancyReactMarkdown>Designing components for animated transcripts ([coding](/#/coding))</FancyReactMarkdown>, new Date("October 29, 2022")),
     event("Story", WritingIds.SHORT_STORIES, <FancyReactMarkdown>Starting to release an [illustrated audio story](/#/shortstories)</FancyReactMarkdown>, new Date("October 30, 2022")),
     event("Story", WritingIds.SHORT_STORIES, <FancyReactMarkdown>Starting to release an [illustrated audio story](/#/shortstories)</FancyReactMarkdown>, new Date("October 31, 2022")),
+
+    event("Transcriptions", WritingIds.CODING, <FancyReactMarkdown>[More typesetting features/functions coding](/#/coding)</FancyReactMarkdown>, new Date("November 3, 2022")),
+    event("Transcriptions", WritingIds.CODING, <FancyReactMarkdown>[More typesetting features/functions coding](/#/coding)</FancyReactMarkdown>, new Date("November 4, 2022")),
 ]}
 startAccessor="start"
 endAccessor="end"
