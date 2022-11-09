@@ -116,14 +116,12 @@ export function wrap(fromTo, timings) {
 export function insert(fromTo, timings) {
   timings = deepCopy(timings) 
 
-  let from = findStartIndex(fromTo.from, timings)
-  let to   = findEndIndex(fromTo.to, timings)
+  let from = findEndIndex(fromTo.from, timings)
+  let to   = findStartIndex(fromTo.to, timings) 
 
-  let container = {type:"container", element: fromTo.element, children: [(from  +"," +to) ]}
+  let container = {type:"container", element: fromTo.element, children: [ ]}
 
-  console.log(timings[from], timings[2])
-  
-  timings = timings.slice(0,from+1).concat([container]).concat(timings.slice(to-1))
+  timings = timings.slice(0,from).concat([container]).concat(timings.slice(to))
 
   return timings
 }
