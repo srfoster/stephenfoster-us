@@ -55,7 +55,6 @@ export function addBackWordPunctuation(originalText, timings) {
   let dc = deepCopy(timings)
 
   let timingsWithFixedPunctuation =  deepCopy(timings).map((i,index)=>{
-    console.log("orig word:",i.content, originalWords[index])
     i.content = originalWords[index]
     return i
   })
@@ -84,8 +83,6 @@ function findIndex(words, timings, end) {
     index++
   }
 
-  console.log(timings)
-
   throw("Anchor not found: " + words)
 }
 
@@ -106,13 +103,24 @@ export function wraps(fromTos, timings) {
 export function wrap(fromTo, timings) {
   timings = deepCopy(timings) 
 
-  console.log("Last",timings[timings.length - 1])
-
   let from = findStartIndex(fromTo.from, timings)
   let to   = findEndIndex(fromTo.to, timings)
 
   let container = {type:"container", element: fromTo.element, children: timings.slice(from, to) }
   
+  timings = timings.slice(0,from).concat([container]).concat(timings.slice(to))
+
+  return timings
+}
+
+export function insert(fromTo, timings) {
+  timings = deepCopy(timings) 
+
+  let from = findEndIndex(fromTo.from, timings)
+  let to   = findStartIndex(fromTo.to, timings) 
+
+  let container = {type:"container", element: fromTo.element, children: [ ]}
+
   timings = timings.slice(0,from).concat([container]).concat(timings.slice(to))
 
   return timings
