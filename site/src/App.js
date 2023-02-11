@@ -549,7 +549,7 @@ function ContactMeComment(props) {
 			</CardContent>
 
 			<CardActions>
-				<Button variant="outlined">Contact Me</Button>
+				<Button variant="outlined" onclick="navigator.clipboard.writeText('<your email here>');alert('email copied to clipboard')">Contact Me</Button>
 			</CardActions>
 		</Card>
 	)
